@@ -41,7 +41,7 @@ export default function RequestDM() {
   const [submitting, setSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
-  const [automationEnabled, setAutomationEnabled] = useState(false);
+  const [automationEnabled] = useState(false);
 
   useEffect(() => {
     const fetchProfiles = async () => {

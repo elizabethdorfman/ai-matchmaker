@@ -40,7 +40,7 @@ export default function Database() {
           console.log('Has imageUrl:', !!profilesData[0].imageUrl);
           console.log('imageUrl value:', profilesData[0].imageUrl);
           // Count how many profiles have imageUrl
-          const profilesWithImages = profilesData.filter(p => p.imageUrl && p.imageUrl.trim() !== '');
+          const profilesWithImages = profilesData.filter((p: InstagramProfile) => p.imageUrl && p.imageUrl.trim() !== '');
           console.log(`Profiles with images: ${profilesWithImages.length} of ${profilesData.length}`);
         }
         setProfiles(profilesData);
