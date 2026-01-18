@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 
 export default function SuccessMessage() {
-  const [userId, setUserId] = useState<string | null>(null);
   const [docUrl, setDocUrl] = useState<string | null>(null);
 
   useEffect(() => {
     // Try to get userId from localStorage
     const storedUserId = localStorage.getItem('lastSignupUserId');
     if (storedUserId) {
-      setUserId(storedUserId);
       setDocUrl(`${window.location.origin}/date-me-doc/${storedUserId}`);
     }
   }, []);

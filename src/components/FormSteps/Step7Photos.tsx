@@ -177,7 +177,7 @@ export default function Step7Photos({
             <span className="text-gray-600 text-sm">Click to upload video or drag & drop</span>
           </div>
         </label>
-        {videoPreview && (
+        {videoFile && videoPreview && (
           <div className="mt-4">
             <p className="text-xs text-green-600 mb-2">✅ Video uploaded</p>
             <video src={videoPreview} controls className="max-w-md rounded-lg shadow-md" />

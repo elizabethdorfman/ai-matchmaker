@@ -4,12 +4,7 @@ import { SignUpFormData } from '../types/form';
 // to keep service account credentials secure. For MVP, we'll use a REST API approach.
 // The googleapis package is Node.js only, so we use fetch with OAuth2 or service account JWT.
 
-// Get access token using service account (simplified - should be on backend)
-async function getAccessToken(): Promise<string> {
-  // This is a simplified version. In production, this should be done on the backend.
-  // For now, we'll need to set up a Vercel serverless function or use a different approach.
-  throw new Error('Google Sheets API calls should be made from a backend API. Please set up a Vercel serverless function.');
-}
+// Note: getAccessToken function removed - Google Sheets API calls are now handled by Vercel serverless functions
 
 // Use Vercel serverless functions (API routes)
 // In development: http://localhost:5173/api (if proxied) or use full URL
