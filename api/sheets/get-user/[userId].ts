@@ -16,13 +16,24 @@ export default async function handler(req: any, res: any) {
     const { userId } = req.query;
     let sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
 
-    // Clean up sheetId if it contains the variable name (common mistake in env vars)
+    // Clean up sheetId - remove variable name prefix, newlines, and whitespace
     if (sheetId) {
+      const originalSheetId = sheetId;
+      // Remove variable name prefix if present
       sheetId = sheetId.replace(/^GOOGLE_SHEET_ID\s*=\s*/i, '');
-      // Remove ALL newlines and carriage returns from anywhere in the string (these cause 404 errors)
-      sheetId = sheetId.replace(/[\r\n]+/g, '');
+      // Remove ALL newlines, carriage returns, null characters, and other control characters
+      sheetId = sheetId.replace(/[\r\n\u0000-\u001F\u007F-\u009F]+/g, '');
       // Remove any leading/trailing whitespace
       sheetId = sheetId.trim();
+      
+      // Debug logging to help identify issues
+      if (originalSheetId !== sheetId) {
+        console.log('Sheet ID cleaned:', {
+          originalLength: originalSheetId.length,
+          cleanedLength: sheetId.length,
+          hadNewlines: /[\r\n]/.test(originalSheetId)
+        });
+      }
     }
 
     if (!userId || !sheetId) {

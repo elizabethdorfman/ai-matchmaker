@@ -147,12 +147,20 @@ export default function SignUpFormMain() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-10 md:mb-14">
-            <div className="text-6xl md:text-7xl mb-4">💕</div>
+            <div className="mb-4">
+              <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                BETA
+              </span>
+            </div>
+            <div className="text-6xl md:text-7xl mb-4">🤖</div>
             <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Join Our Community
+              Join the Beta
             </h1>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              We're building a thoughtful community of marriage-minded singles. Matching with love, optimized by technology.
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto mb-4">
+              You're in the beta! Help us build the matchmaker we wish existed. Limited to the first 100 users.
+            </p>
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
+              Currently beta testing in Toronto's Jewish community.
             </p>
           </div>
 

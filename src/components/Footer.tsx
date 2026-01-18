@@ -8,9 +8,18 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
               <span>💕</span> Toronto Jewish Matchmaker
+              <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-2 py-1 rounded text-xs font-bold">
+                BETA
+              </span>
             </h3>
-            <p className="text-gray-300">
+            <p className="text-gray-300 mb-3">
               Matching with love, optimized by technology. No swiping, just results.
+            </p>
+            <p className="text-gray-400 text-sm mb-2">
+              Built by Aria (Software Engineer) • Beta testing in Toronto's Jewish Community
+            </p>
+            <p className="text-gray-400 text-sm">
+              Free matchmaking service • Limited beta - Join the first 100 users
             </p>
           </div>
           
@@ -28,6 +37,16 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/privacy" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
                   Contact
                 </Link>
@@ -35,6 +54,21 @@ export default function Footer() {
               <li>
                 <Link to="/signup" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
                   Sign Up
+                </Link>
+              </li>
+              <li>
+                <Link to="/analysis" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
+                  Market Analysis
+                </Link>
+              </li>
+              <li>
+                <Link to="/ai-activity" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
+                  AI Activity
+                </Link>
+              </li>
+              <li>
+                <Link to="/see-community" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
+                  See Community
                 </Link>
               </li>
             </ul>
@@ -82,7 +116,10 @@ export default function Footer() {
             </Link>
           </div>
           <p className="text-gray-300 text-sm mt-4">
-            💕 We match with love. We source with AI. ✨
+            💕 Matching with love, optimized by technology • No swiping, just results ✨
+          </p>
+          <p className="text-gray-400 text-xs mt-2">
+            Built for Toronto's Jewish community • Thoughtful matchmaking for marriage-minded individuals
           </p>
         </div>
       </div>
