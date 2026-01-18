@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 interface ActivityItem {
   id: string;
@@ -272,15 +271,6 @@ export default function AIActivity() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="max-w-4xl mx-auto mt-12 text-center">
-          <Link
-            to="/analysis"
-            className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-lg font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-          >
-            Get Your Market Analysis
-          </Link>
-        </div>
       </div>
     </div>
   );

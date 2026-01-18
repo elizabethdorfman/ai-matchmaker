@@ -32,18 +32,6 @@ export default function Home() {
               >
                 Anonymously Message Your Crush
               </Link>
-              <Link
-                to="/analysis"
-                className="bg-white text-purple-600 border-2 border-purple-600 px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                Get Your Market Analysis
-              </Link>
-              <Link
-                to="/roi"
-                className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                Calculate Your Dating ROI
-              </Link>
             </div>
           </div>
         </section>

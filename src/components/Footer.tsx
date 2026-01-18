@@ -57,11 +57,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/analysis" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
-                  Market Analysis
-                </Link>
-              </li>
-              <li>
                 <Link to="/ai-activity" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all">
                   AI Activity
                 </Link>

@@ -7,8 +7,6 @@ import SignUpForm from './components/SignUpForm';
 import DateMeDoc from './pages/DateMeDoc';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
-import MarketAnalysis from './pages/MarketAnalysis';
-import DatingROI from './pages/DatingROI';
 import AIActivity from './pages/AIActivity';
 import Database from './pages/Database';
 import RequestDM from './pages/RequestDM';
@@ -24,10 +22,6 @@ function App() {
           <Route path="signup" element={<SignUpForm />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="terms" element={<Terms />} />
-          <Route path="analysis" element={<MarketAnalysis />} />
-          <Route path="market-analysis" element={<MarketAnalysis />} />
-          <Route path="roi" element={<DatingROI />} />
-          <Route path="dating-roi" element={<DatingROI />} />
           <Route path="ai-activity" element={<AIActivity />} />
           <Route path="activity" element={<AIActivity />} />
           <Route path="see-community" element={<Database />} />
