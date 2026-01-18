@@ -179,19 +179,13 @@ export default function Home() {
 
         {/* CTA Section */}
         <section className="py-16 md:py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center bg-white rounded-2xl shadow-2xl p-8 md:p-12 border-2 border-yellow-100">
-              <div className="text-6xl mb-6">💕</div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Ready for a Real Match?
-              </h2>
-              <Link
-                to="/signup"
-                className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-              >
-                Let Us Find You Love
-              </Link>
-            </div>
+          <div className="container mx-auto px-4 text-center">
+            <Link
+              to="/signup"
+              className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+            >
+              Let Us Find You Love
+            </Link>
           </div>
         </section>
       </div>
