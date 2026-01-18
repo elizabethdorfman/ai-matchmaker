@@ -17,14 +17,37 @@ export default async function handler(req: any, res: any) {
     const sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
 
     if (!userId || !sheetId) {
-      return res.status(400).json({ error: 'Missing required parameters' });
+      return res.status(400).json({ 
+        error: 'Missing required parameters',
+        details: {
+          hasUserId: !!userId,
+          hasSheetId: !!sheetId
+        }
+      });
     }
+
+    const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.VITE_GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    let privateKey = process.env.GOOGLE_PRIVATE_KEY || process.env.VITE_GOOGLE_PRIVATE_KEY;
+
+    if (!clientEmail || !privateKey) {
+      return res.status(500).json({ 
+        error: 'Google service account credentials not configured',
+        details: {
+          hasClientEmail: !!clientEmail,
+          hasPrivateKey: !!privateKey
+        }
+      });
+    }
+
+    // Handle private key formatting - remove quotes if present, replace \n with actual newlines
+    privateKey = privateKey.replace(/^["']|["']$/g, ''); // Remove surrounding quotes
+    privateKey = privateKey.replace(/\\n/g, '\n'); // Replace \n with actual newlines
 
     // Initialize Google Sheets API
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.VITE_GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: (process.env.GOOGLE_PRIVATE_KEY || process.env.VITE_GOOGLE_PRIVATE_KEY)?.replace(/\\n/g, '\n'),
+        client_email: clientEmail,
+        private_key: privateKey,
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
@@ -39,7 +62,7 @@ export default async function handler(req: any, res: any) {
 
     const rows = response.data.values;
     if (!rows || rows.length < 2) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found - no data in sheet' });
     }
 
     // First row is headers
@@ -57,10 +80,17 @@ export default async function handler(req: any, res: any) {
       }
     }
 
-    return res.status(404).json({ error: 'User not found' });
-  } catch (error) {
+    return res.status(404).json({ error: 'User not found - userId not in sheet' });
+  } catch (error: any) {
     console.error('Error getting data from Google Sheets:', error);
-    return res.status(500).json({ error: 'Failed to get user data' });
+    const errorMessage = error?.message || 'Unknown error';
+    const isKeyError = errorMessage.includes('DECODER') || errorMessage.includes('unsupported');
+    
+    return res.status(500).json({ 
+      error: 'Failed to get user data',
+      message: errorMessage,
+      hint: isKeyError ? 'Private key format issue - check that GOOGLE_PRIVATE_KEY is properly formatted with \\n for newlines' : undefined
+    });
   }
 }
 
