@@ -14,7 +14,16 @@ export default async function handler(req: any, res: any) {
 
   try {
     const { userId } = req.query;
-    const sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
+    let sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
+
+    // Clean up sheetId if it contains the variable name (common mistake in env vars)
+    if (sheetId) {
+      sheetId = sheetId.replace(/^GOOGLE_SHEET_ID\s*=\s*/i, '');
+      // Remove ALL newlines and carriage returns from anywhere in the string (these cause 404 errors)
+      sheetId = sheetId.replace(/[\r\n]+/g, '');
+      // Remove any leading/trailing whitespace
+      sheetId = sheetId.trim();
+    }
 
     if (!userId || !sheetId) {
       return res.status(400).json({ 

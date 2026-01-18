@@ -8,14 +8,25 @@ export async function uploadPhoto(file: File, userId: string, type: 'headshot' |
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   
+  if (!cloudName) {
+    throw new Error('Cloudinary cloud name is not configured. Please set VITE_CLOUDINARY_CLOUD_NAME environment variable.');
+  }
+  
   const response = await fetch(
     `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
     { method: 'POST', body: formData }
   );
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(`Failed to upload ${type} photo: ${errorData.error?.message || 'Unknown error'}`);
+    let errorData: any = {};
+    try {
+      errorData = await response.json();
+    } catch (e) {
+      errorData = { error: { message: response.statusText } };
+    }
+    const errorMessage = errorData.error?.message || errorData.message || `HTTP ${response.status}: ${response.statusText}`;
+    console.error('Cloudinary upload error:', { errorData, cloudName, responseStatus: response.status });
+    throw new Error(`Failed to upload ${type} photo: ${errorMessage}`);
   }
 
   const data = await response.json();
@@ -27,9 +38,13 @@ export async function uploadVideo(file: File, userId: string): Promise<string> {
   formData.append('file', file);
   formData.append('upload_preset', 'matchmaker_videos');
   formData.append('folder', `users/${userId}`);
-  formData.append('public_id', 'intro-video');
+  formData.append('public_id', `${userId}_intro-video`);
 
   const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  
+  if (!cloudName) {
+    throw new Error('Cloudinary cloud name is not configured. Please set VITE_CLOUDINARY_CLOUD_NAME environment variable.');
+  }
   
   const response = await fetch(
     `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`,
@@ -37,7 +52,9 @@ export async function uploadVideo(file: File, userId: string): Promise<string> {
   );
 
   if (!response.ok) {
-    throw new Error('Failed to upload video');
+    const errorData = await response.json().catch(() => ({}));
+    const errorMessage = errorData.error?.message || errorData.message || `HTTP ${response.status}: ${response.statusText}`;
+    throw new Error(`Failed to upload video: ${errorMessage}`);
   }
 
   const data = await response.json();

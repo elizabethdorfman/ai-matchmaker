@@ -13,7 +13,20 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { sheetId, range, values } = req.body;
+    let { sheetId, range, values } = req.body;
+
+    // If sheetId is not provided in body, try to get it from env vars
+    if (!sheetId) {
+      sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
+    }
+
+    // Clean up sheetId - remove any newlines and carriage returns (these cause 404 errors)
+    if (sheetId) {
+      sheetId = sheetId.replace(/^GOOGLE_SHEET_ID\s*=\s*/i, '');
+      // Remove ALL newlines and carriage returns from anywhere in the string
+      sheetId = sheetId.replace(/[\r\n]+/g, '');
+      sheetId = sheetId.trim();
+    }
 
     if (!sheetId || !range || !values) {
       return res.status(400).json({ error: 'Missing required parameters' });

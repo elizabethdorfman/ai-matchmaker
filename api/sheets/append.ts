@@ -13,7 +13,22 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { sheetId, range, values } = req.body;
+    let { sheetId, range, values } = req.body;
+
+    // If sheetId is not provided in body, try to get it from env vars
+    if (!sheetId) {
+      sheetId = process.env.GOOGLE_SHEET_ID || process.env.VITE_GOOGLE_SHEET_ID;
+      // Clean up sheetId if it contains the variable name (common mistake in env vars)
+      if (sheetId) {
+        sheetId = sheetId.replace(/^GOOGLE_SHEET_ID\s*=\s*/i, '');
+        // Remove ALL newlines and carriage returns from anywhere in the string (these cause 404 errors)
+        sheetId = sheetId.replace(/[\r\n]+/g, '');
+        sheetId = sheetId.trim();
+      }
+    } else {
+      // Also clean sheetId if it comes from the request body
+      sheetId = sheetId.replace(/[\r\n]+/g, '').trim();
+    }
 
     console.log('Append request received:', {
       hasSheetId: !!sheetId,
