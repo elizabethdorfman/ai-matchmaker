@@ -279,22 +279,6 @@ export default function Home() {
           <div className="w-full h-px bg-gray-300"></div>
         </div>
 
-        {/* Free for Community Section */}
-        <section className="py-16 md:py-20 bg-white/50 backdrop-blur-sm">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 border-2 border-green-100">
-                <div className="text-5xl mb-4">💚</div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-                  Free for the Community
-                </h2>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Our matchmaking service is completely free, supported by community donations. We believe everyone deserves to find their perfect match, regardless of financial circumstances. If you'd like to support our mission, donations help us continue providing this service to the Toronto Jewish community.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
       </div>
     </div>
