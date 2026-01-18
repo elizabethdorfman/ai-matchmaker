@@ -3,17 +3,6 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      {/* Decorative hearts in background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-10 left-10 text-4xl opacity-10">💙</div>
-        <div className="absolute top-32 right-20 text-5xl opacity-10">💛</div>
-        <div className="absolute bottom-20 left-1/4 text-6xl opacity-10">💕</div>
-        <div className="absolute bottom-10 right-1/3 text-4xl opacity-10">✨</div>
-        <div className="absolute top-1/2 right-10 text-5xl opacity-10">💜</div>
-        <div className="absolute top-1/3 left-1/4 text-5xl opacity-10">❤️</div>
-        <div className="absolute bottom-1/3 right-1/4 text-4xl opacity-10">💖</div>
-      </div>
-
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="pt-20 pb-16 md:pt-32 md:pb-24">
@@ -22,7 +11,6 @@ export default function Home() {
             <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Matching with love, optimized by technology
             </h1>
-            <p className="text-2xl md:text-3xl mb-3 text-gray-700 font-semibold">We match with love. We source with AI.</p>
             <p className="text-lg md:text-xl mb-10 text-gray-600 max-w-3xl mx-auto">
               No swiping, no endless scrolling. We use AI to find compatible matches in the Toronto Jewish community and connect you directly.
             </p>
@@ -41,9 +29,6 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 What Makes Us Different
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Built by people who've tried every dating app. We know what's missing.
-              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
               <div className="bg-white p-6 md:p-8 rounded-2xl shadow-lg border-2 border-yellow-100 hover:shadow-xl transition-all hover:scale-105">
