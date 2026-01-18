@@ -25,21 +25,6 @@ export default function About() {
             </p>
           </div>
 
-          {/* Our Story */}
-          <section className="mb-12 bg-white rounded-2xl shadow-lg p-8 md:p-10 border-2 border-yellow-100">
-            <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Our Story
-            </h2>
-            <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-              Built by a young professional who's tried every dating app. After swiping through countless profiles, 
-              we realized what was missing: the perfect blend of human care and technological precision.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              That's why we created a matchmaking service that combines thoughtful compatibility matching with AI optimization. 
-              No swiping, just meaningful connections for Toronto's Jewish community.
-            </p>
-          </section>
-
           {/* How We Match */}
           <section className="mb-12 bg-white rounded-2xl shadow-lg p-8 md:p-10 border-2 border-blue-100">
             <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -84,8 +69,7 @@ export default function About() {
               The Team
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              We're a team of professionals who understand the challenges of modern dating and are committed 
-              to making the process more meaningful and effective for our community.
+              Built by a shy software engineer who's tried every dating app and wanted to build something better for her community.
             </p>
           </section>
         </div>

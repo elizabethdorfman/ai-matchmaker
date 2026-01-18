@@ -63,6 +63,14 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-gray-600 text-center">
+          <div className="mb-6">
+            <Link
+              to="/signup"
+              className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+            >
+              Let Us Find You Love
+            </Link>
+          </div>
           <p className="text-gray-300 mb-4">&copy; {new Date().getFullYear()} Toronto Jewish Matchmaker. All rights reserved.</p>
           <div className="space-x-4 text-sm">
             <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">

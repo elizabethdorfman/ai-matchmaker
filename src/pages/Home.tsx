@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
@@ -172,22 +170,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Divider */}
-        <div className="py-8">
-          <div className="w-full h-px bg-gray-300"></div>
-        </div>
-
-        {/* CTA Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-4 text-center">
-            <Link
-              to="/signup"
-              className="inline-block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-10 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300"
-            >
-              Let Us Find You Love
-            </Link>
-          </div>
-        </section>
       </div>
     </div>
   );
