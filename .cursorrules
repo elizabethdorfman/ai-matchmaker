@@ -1,0 +1,13 @@
+# Cursor Rules for Web Development
+
+## Browser-First Development
+**ALWAYS view web applications in the browser first before making assumptions about functionality or debugging issues.**
+
+When working on web development projects:
+1. **Check the browser** - Use browser tools to navigate to the application and see what's actually happening
+2. **Take screenshots** - Capture visual state to understand UI issues
+3. **Check console** - Review browser console for errors and warnings
+4. **Verify functionality** - Test features in the actual browser environment
+
+This ensures you understand the real user experience and can debug issues more effectively.
+
