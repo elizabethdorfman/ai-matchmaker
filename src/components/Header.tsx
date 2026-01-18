@@ -8,7 +8,7 @@ export default function Header() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white shadow-md border-b-2 border-yellow-200">
+    <header className="bg-white shadow-lg">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
@@ -19,37 +19,37 @@ export default function Header() {
           <div className="hidden md:flex space-x-2">
             <Link
               to="/"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all shadow hover:shadow-lg ${
                 isActive('/')
-                  ? 'text-gray-900 font-semibold border-b-2 border-blue-600'
-                  : 'text-gray-700 hover:text-blue-600'
+                  ? 'text-gray-900 font-semibold border-b-2 border-blue-600 bg-blue-50'
+                  : 'text-gray-700 hover:text-blue-600 bg-white'
               }`}
             >
               Home
             </Link>
             <Link
               to="/about"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all shadow hover:shadow-lg ${
                 isActive('/about')
-                  ? 'text-gray-900 font-semibold border-b-2 border-purple-600'
-                  : 'text-gray-700 hover:text-purple-600'
+                  ? 'text-gray-900 font-semibold border-b-2 border-purple-600 bg-purple-50'
+                  : 'text-gray-700 hover:text-purple-600 bg-white'
               }`}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all shadow hover:shadow-lg ${
                 isActive('/contact')
-                  ? 'text-gray-900 font-semibold border-b-2 border-pink-600'
-                  : 'text-gray-700 hover:text-pink-600'
+                  ? 'text-gray-900 font-semibold border-b-2 border-pink-600 bg-pink-50'
+                  : 'text-gray-700 hover:text-pink-600 bg-white'
               }`}
             >
               Contact
             </Link>
             <Link
               to="/signup"
-              className="ml-4 px-6 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg text-sm font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="ml-4 px-6 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg text-sm font-semibold shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               Sign Up
             </Link>
@@ -81,13 +81,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 space-y-2 bg-white rounded-lg p-4 shadow-md border border-gray-200">
+          <div className="md:hidden mt-4 space-y-2 bg-white rounded-lg p-4 shadow-lg border border-gray-200">
             <Link
               to="/"
-              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all ${
+              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all shadow hover:shadow-md ${
                 isActive('/')
                   ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-600'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  : 'text-gray-700 hover:bg-gray-50 bg-white'
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -95,10 +95,10 @@ export default function Header() {
             </Link>
             <Link
               to="/about"
-              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all ${
+              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all shadow hover:shadow-md ${
                 isActive('/about')
                   ? 'bg-purple-50 text-purple-700 border-l-4 border-purple-600'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  : 'text-gray-700 hover:bg-gray-50 bg-white'
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -106,10 +106,10 @@ export default function Header() {
             </Link>
             <Link
               to="/contact"
-              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all ${
+              className={`block px-4 py-2 rounded-lg text-base font-medium transition-all shadow hover:shadow-md ${
                 isActive('/contact')
                   ? 'bg-pink-50 text-pink-700 border-l-4 border-pink-600'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  : 'text-gray-700 hover:bg-gray-50 bg-white'
               }`}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -117,7 +117,7 @@ export default function Header() {
             </Link>
             <Link
               to="/signup"
-              className="block px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg text-base font-medium hover:shadow-lg transition-all text-center mt-2"
+              className="block px-4 py-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white rounded-lg text-base font-semibold shadow-md hover:shadow-xl transition-all text-center mt-2 transform hover:scale-105"
               onClick={() => setIsMenuOpen(false)}
             >
               Sign Up

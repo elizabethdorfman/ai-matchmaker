@@ -29,6 +29,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="flex justify-center py-12">
+          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full shadow-lg"></div>
+        </div>
+
         {/* Value Proposition Section */}
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4">
@@ -73,6 +78,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="flex justify-center py-12">
+          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full shadow-lg"></div>
+        </div>
+
         {/* How It Works Section */}
         <section className="py-16 md:py-20 bg-white/50 backdrop-blur-sm">
           <div className="container mx-auto px-4">
@@ -116,6 +126,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Divider */}
+        <div className="flex justify-center py-12">
+          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-full shadow-lg"></div>
+        </div>
 
         {/* AI Sourcing Section */}
         <section className="py-16 md:py-20">
@@ -232,6 +247,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Divider */}
+        <div className="flex justify-center py-12">
+          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full shadow-lg"></div>
+        </div>
 
         {/* CTA Section */}
         <section className="py-16 md:py-20">
