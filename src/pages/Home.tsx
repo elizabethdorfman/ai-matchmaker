@@ -18,8 +18,8 @@ export default function Home() {
         </section>
 
         {/* Divider */}
-        <div className="flex justify-center py-12">
-          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full shadow-lg"></div>
+        <div className="py-8">
+          <div className="w-full h-px bg-gray-300"></div>
         </div>
 
         {/* AI Sourcing Section */}
@@ -29,6 +29,9 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 We Source With AI
               </h2>
+              <p className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
+                <strong className="text-blue-600">Traditional matchmaking, modern technology:</strong> We combine the personal touch of traditional matchmaking with AI-powered sourcing that actively finds compatible people in the community.
+              </p>
             </div>
             <div className="max-w-4xl mx-auto">
               <div className="bg-white rounded-2xl shadow-lg border-2 border-blue-100 p-8 md:p-10">
@@ -41,9 +44,9 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="flex-grow">
-                      <h3 className="text-lg font-bold text-gray-800 mb-2">Search Instagram</h3>
+                      <h3 className="text-lg font-bold text-gray-800 mb-2">Search Social Media</h3>
                       <p className="text-gray-600">
-                        Our AI analyzes your profile and searches Instagram for people who match your criteria: location, age range, professional background, interests, values, and community connection.
+                        Our AI analyzes your profile and searches social media for people who match your criteria: location, age range, professional background, interests, values, and community connection.
                       </p>
                     </div>
                   </div>
@@ -108,21 +111,14 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
-                {/* Info Box */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <p className="text-sm text-gray-700 text-center">
-                    <strong className="text-blue-600">Traditional matchmaking, modern technology:</strong> We combine the personal touch of traditional matchmaking with AI-powered sourcing that actively finds compatible people in the community. No swiping, no algorithms—just thoughtful introductions.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Divider */}
-        <div className="flex justify-center py-12">
-          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-pink-500 to-transparent rounded-full shadow-lg"></div>
+        <div className="py-8">
+          <div className="w-full h-px bg-gray-300"></div>
         </div>
 
         {/* Value Proposition Section */}
@@ -155,8 +151,8 @@ export default function Home() {
         </section>
 
         {/* Divider */}
-        <div className="flex justify-center py-12">
-          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full shadow-lg"></div>
+        <div className="py-8">
+          <div className="w-full h-px bg-gray-300"></div>
         </div>
 
         {/* Free for Community Section */}
@@ -177,8 +173,8 @@ export default function Home() {
         </section>
 
         {/* Divider */}
-        <div className="flex justify-center py-12">
-          <div className="w-32 h-2 bg-gradient-to-r from-transparent via-green-500 to-transparent rounded-full shadow-lg"></div>
+        <div className="py-8">
+          <div className="w-full h-px bg-gray-300"></div>
         </div>
 
         {/* CTA Section */}
