@@ -42,6 +42,7 @@ export default function RequestDM() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
   const [automationEnabled] = useState(false);
+  const [customMessage, setCustomMessage] = useState('');
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -74,6 +75,8 @@ export default function RequestDM() {
     return matchesSearch;
   });
 
+  const defaultMessage = "This is matchmaker Aria. We have a member of the toronto jewish community that wanted to know if you're single?";
+
   const handleRequestDM = (profile: InstagramProfile) => {
     setSelectedProfile(profile);
     setShowModal(true);
@@ -84,6 +87,7 @@ export default function RequestDM() {
       requesterPhone: '',
       notes: '',
     });
+    setCustomMessage(defaultMessage);
   };
 
   const handleUsernameSearch = () => {
@@ -142,6 +146,7 @@ export default function RequestDM() {
           targetProfileId: selectedProfile.id,
           notes: formData.notes,
           automationEnabled: automationEnabled,
+          messageTemplate: customMessage || defaultMessage,
         }),
       });
 
@@ -481,23 +486,31 @@ export default function RequestDM() {
                 </p>
               </div>
 
-              {/* Message Preview - Prominent */}
+              {/* Message Editor - Customizable */}
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-lg p-6 mb-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
                     <span>💬</span>
-                    <span>Preview: Message That Will Be Sent</span>
+                    <span>Message That Will Be Sent</span>
                   </h3>
                   <span className="text-xs bg-purple-200 text-purple-800 px-3 py-1 rounded-full font-semibold">
-                    PREVIEW
+                    EDITABLE
                   </span>
                 </div>
                 <div className="bg-white rounded-lg p-5 border-2 border-gray-200 shadow-sm">
-                  <div className="bg-gray-50 rounded p-4 border border-gray-200">
-                    <p className="text-gray-800 whitespace-pre-wrap leading-relaxed font-medium">
-                      This is matchmaker Aria. We have a member of the toronto jewish community that wanted to know if you're single?
-                    </p>
-                  </div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Customize the message (optional)
+                  </label>
+                  <textarea
+                    value={customMessage}
+                    onChange={(e) => setCustomMessage(e.target.value)}
+                    className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none resize-y min-h-[100px] text-gray-700 leading-relaxed"
+                    placeholder={defaultMessage}
+                    rows={4}
+                  />
+                  <p className="text-xs text-gray-500 mt-2">
+                    This is the message that will be sent to {selectedProfile.fullName || selectedProfile.username}. You can edit it or use the default.
+                  </p>
                 </div>
                 <div className="mt-4 pt-4 border-t border-purple-200">
                   <p className="text-xs text-gray-600">
@@ -534,7 +547,7 @@ export default function RequestDM() {
                       required
                       value={formData.requesterName}
                       onChange={(e) => setFormData({ ...formData, requesterName: e.target.value })}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                      className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none text-gray-700"
                       placeholder="Enter your name"
                     />
                     <p className="text-xs text-gray-500 mt-1">So we know who to match them with</p>
@@ -549,7 +562,7 @@ export default function RequestDM() {
                       required
                       value={formData.requesterEmail}
                       onChange={(e) => setFormData({ ...formData, requesterEmail: e.target.value })}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                      className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:ring-2 focus:ring-purple-200 focus:outline-none text-gray-700"
                       placeholder="your.email@example.com"
                     />
                     <p className="text-xs text-gray-500 mt-1">We'll message you if there's a match</p>

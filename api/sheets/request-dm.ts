@@ -217,10 +217,11 @@ export default async function handler(req: any, res: any) {
       targetProfileId,
       notes,
       automationEnabled = false,
-    }: DMRequest = req.body;
+      messageTemplate: customMessageTemplate,
+    }: DMRequest & { messageTemplate?: string } = req.body;
 
-    // Generate the message template
-    const messageTemplate = generateMessageTemplate(
+    // Use custom message template if provided, otherwise generate default
+    const messageTemplate = customMessageTemplate || generateMessageTemplate(
       targetFullName || targetUsername
     );
 
