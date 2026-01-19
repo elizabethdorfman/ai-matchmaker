@@ -49,7 +49,7 @@ export default function Home() {
                 We Source With AI
               </h2>
               <p className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
-                <strong className="text-blue-600">We analyze Instagram & LinkedIn to show you potential matches:</strong> Our AI searches social media to find compatible people in Toronto's Jewish community. See how many matches you have before you sign up.
+                <strong className="text-blue-600">We analyze Instagram & LinkedIn to show you potential matches:</strong> Our AI searches social media to find compatible people in Toronto's Jewish community.
               </p>
             </div>
             <div className="max-w-4xl mx-auto">
@@ -128,6 +128,98 @@ export default function Home() {
                         If both of you say yes, we share contact information and you connect directly. If either person declines, we respect that and keep looking. No pressure, just genuine compatibility.
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Divider */}
+        <div className="py-8">
+          <div className="w-full h-px bg-gray-300"></div>
+        </div>
+
+        {/* Similarity Theorem Section */}
+        <section className="py-16 md:py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                The Similarity Theorem
+              </h2>
+              <p className="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
+                Our core matching philosophy: <strong className="text-blue-600">people who are similar to each other form stronger, more lasting connections.</strong>
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-lg border-2 border-purple-100 p-8 md:p-10">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">Why Similarity Works</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Research analyzing millions of online dating matches shows that people who share similarities across key dimensions—values, interests, lifestyle, goals, and life stage—have significantly higher likelihood of successful matches and forming meaningful connections.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed">
+                      Studies consistently find that when partners share similar values, attitudes, and beliefs, they experience greater relationship satisfaction, reduced conflict, and better alignment on important life decisions. This isn't about finding someone identical to you—it's about matching on the dimensions that truly matter for long-term compatibility.
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">How We Measure Similarity</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Our AI-powered matching algorithm analyzes compatibility across multiple dimensions:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Religious Observance</p>
+                          <p className="text-sm text-gray-600">Shared level of religious practice and commitment</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Core Values & Beliefs</p>
+                          <p className="text-sm text-gray-600">Alignment on what matters most in life</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Lifestyle Preferences</p>
+                          <p className="text-sm text-gray-600">How you want to live day-to-day</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Education & Career Goals</p>
+                          <p className="text-sm text-gray-600">Professional alignment and aspirations</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Interests & Hobbies</p>
+                          <p className="text-sm text-gray-600">Shared activities and passions</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-500 mt-2"></div>
+                        <div>
+                          <p className="font-semibold text-gray-800">Life Stage Compatibility</p>
+                          <p className="text-sm text-gray-600">Where you are and where you're heading</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">The Result</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      By matching people who are similar across these meaningful dimensions, we create connections built on shared understanding, aligned goals, and genuine compatibility. This is the foundation of the Similarity Theorem—and it's how we help you find someone who truly fits.
+                    </p>
                   </div>
                 </div>
               </div>
