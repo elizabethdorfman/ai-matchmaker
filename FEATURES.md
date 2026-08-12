@@ -101,14 +101,95 @@ to the brand — we send them traffic, which is the argument if anyone asks.
 
 **Refresh:** price and availability daily for in-stock items, full re-crawl weekly.
 
-**Enrichment is the expensive part.** One vision call per item to produce the canonical
-description Feature 1 depends on. ~1M calls for the initial backfill — batch it, use a
-cheap tier, only re-run when an item's image changes.
-
 ## What it powers
 
 Cold-start recommendations. A brand-new user with five saved items gets real results
 immediately, because the index already exists and is already embedded. No chicken-and-egg.
+
+---
+
+## What the index costs
+
+The crawl is nearly free. **Enrichment — one model call per item to write the canonical
+description — is the entire cost**, and everything below is about making that call cheap.
+
+### Time
+
+The rate limit is per-domain, so brands crawl in parallel:
+
+| Stage | Duration |
+|---|---|
+| Shopify brands (8 paginated requests each) | Under an hour for all of them |
+| JSON-LD brands (one request *per product*) | ~33 min/brand serially → ~4 hrs at 20 concurrent domains |
+| **Full crawl** | **4–8 hours wall clock, one small VM** |
+| Enrichment (batched) | 1–3 days — the long pole |
+| CLIP embeddings (self-hosted, 1M images) | ~1.5 GPU-hours, ~$5 |
+
+### The four levers
+
+| Lever | Effect |
+|---|---|
+| **Downsample to ~512px** | Image tokens scale with pixels, and catalog photos are flat garments on white — you don't need 1000px to see "cropped, boxy, mid-weight denim." ~1,200 → ~400 tokens. |
+| **Emit compact JSON, not prose** | Output is priced ~5× input. A structured attribute object is ~120 tokens vs ~250 of description. Bigger lever than it looks. |
+| **Route text-only where tags are rich** | Many Shopify brands ship real structured tags (Everlane's payload carries `fabric: denim/chambray`, `category: outerwear` directly). Those skip vision entirely — ~250 input tokens. Realistically 50–60% of items. |
+| **Cache the vocabulary prompt** | The controlled-vocabulary system prompt is identical on every call; cache reads bill at ~0.1×. |
+
+### Batching with Haiku 4.5
+
+Haiku is the right tier: extracting silhouette, fabric, and color into a fixed vocabulary
+is mechanical perception, not judgment. The Batch API halves every rate.
+
+**Batch mechanics that matter:**
+
+- **Pass image URLs, not base64.** Batches cap at **256MB per batch**; base64 images blow
+  that instantly and force you into tiny batches. URL sources keep each request to a few
+  hundred bytes.
+- **100,000 requests per batch max** → 1M items is ~10–12 batches.
+- Batches typically finish within an hour, capped at 24. Results are retrievable for 29 days.
+- Results come back **in any order** — key by `custom_id`, never by position.
+- Set `custom_id` to the item's stable hash so re-runs are idempotent.
+
+**Per-item cost, optimized, at batch rates:**
+
+| Path | Input | Output | Cost/item |
+|---|---|---|---|
+| Vision (image + metadata) | ~600 tok | ~120 tok | ~$0.0006 |
+| Text-only (rich tags) | ~250 tok | ~120 tok | ~$0.0004 |
+| **Blended @ 60% text-only** | | | **~$0.0005** |
+
+| Index size | Enrichment cost |
+|---|---|
+| 100K items | **~$50–80** |
+| 1M items | **~$500–800** |
+
+Compare to the unoptimized version (full-res images, prose output, vision on everything):
+~$1,300 for 1M. The levers roughly halve it.
+
+### Cheaper still: open-weight VLMs
+
+Open vision models (Qwen2.5-VL, Llama Vision, InternVL) on a commodity inference provider
+run **5–10× below** frontier tiers — call it **$100–200 for the full 1M**. Verify current
+rates before committing; they move constantly.
+
+The tradeoff is not accuracy on the easy fields. An open VLM handles category, color,
+fabric, and silhouette fine — that's perception, and it's most of the volume. It gets
+shakier on aesthetic lineage and formality register, which is exactly the judgment vibe
+search depends on. If we go this route: run the cheap model across the whole index, then
+spot-check 500 items against Haiku. Costs ~$2 to find out whether the aesthetic fields hold.
+
+### The actual conclusion
+
+**$600 vs. $150 is not a decision worth much time.** The index is not the expensive part of
+this business — a week of engineering to shave $450 is a bad trade. Spend **$50 on 100K
+items**, find out whether the recommendations feel uncanny, and scale the index only once
+the taste model has earned it.
+
+### Ongoing
+
+- Price/availability refresh is crawl-only — no model calls, negligible.
+- Re-run enrichment **only when an item's image changes**. At ~5% churn/week that's ~50K
+  items, about **$25/week** at 1M scale.
+- Storage: 1M × 768-dim vectors ≈ 3GB, ~10GB with metadata. One Postgres instance.
 
 ---
 
