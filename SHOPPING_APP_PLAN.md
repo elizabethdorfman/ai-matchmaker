@@ -120,9 +120,104 @@ Claude (vision)                       attribute extraction, review scoring, aest
 CLIP / open-source embedding model    image embeddings
 ```
 
-Ingestion of items: start with a URL-paste flow (scrape OG tags + product image) plus
-photo upload. Skip retailer API partnerships until there's traction — they're slow
-and gate you on scale you don't have yet.
+---
+
+## Index construction: 500 curated brands
+
+The index *is* the curation. Rather than indexing the whole internet, hand-pick ~500
+brands that match the product's taste thesis and crawl them completely. At a typical
+1,500–3,000 live SKUs per brand that's roughly **1M items** — small enough to run on
+one Postgres instance, large enough that no user hits the edges.
+
+### Don't write 500 scrapers
+
+Tier the crawl by how structured the site is. Nearly all of the 500 fall into the
+first two tiers, and neither is really "scraping":
+
+| Tier | Method | Coverage |
+|---|---|---|
+| 1 | Shopify `/products.json` — full catalog, paginated, structured JSON | Very high for independent/DTC brands, which is most of the list |
+| 2 | `schema.org/Product` JSON-LD parsed from product pages, URLs discovered via `sitemap.xml` | Nearly all remaining brands — required for their own Google Shopping listings, so it's well-maintained |
+| 3 | LLM-assisted extraction: feed cleaned HTML to a model with a target schema | The stragglers; slower and pricier, use sparingly |
+| 4 | Manual / skip | If a brand needs bespoke code, it's usually not worth 1/500th of the index |
+
+Sitemaps do the URL discovery, so there's no recursive link-following anywhere in the
+pipeline. Build one generic worker with four strategies, not 500 scripts.
+
+### Crawl hygiene
+
+Respect `robots.txt`, identify the bot honestly in the UA with a contact URL, cap at
+~1 req/sec/domain, and back off on 429/503. Store only what's needed (metadata,
+embeddings, thumbnail) and always deep-link back to the brand — this is traffic *to*
+them, which is the argument if anyone asks. Refresh price/availability daily for
+in-stock items; full re-crawl weekly. Delta-detect via product `updated_at` where
+exposed so most runs are cheap.
+
+### Normalization (the step that makes search work)
+
+Raw crawl output is unusable for retrieval — retailer titles are SEO noise
+("Women's Casual Chic Oversized Blazer Fall 2025 Trendy"). Every item gets run
+through a vision + text pass that produces a **canonical description** in one
+controlled vocabulary: silhouette, fit, fabric, color family, formality, aesthetic
+lineage, construction cues. Everything downstream — text search, image search,
+recommendations — retrieves against this, never against the raw title.
+
+Cost note: this is one vision call per item, so ~1M calls for the initial backfill.
+Batch it, use a cheap tier, and only re-run when an item's image changes.
+
+---
+
+## Search: one index, three query types
+
+All three modes produce a vector and hit the same ANN index. They differ only in how
+the query vector is built — which is why adding image search after text search is
+days of work, not a new system.
+
+### Text search
+
+Embed the query, ANN over canonical descriptions, **hybrid with keyword/BM25**. The
+hybrid part is not optional: pure vector search is bad at exact brand names, model
+names, and SKUs ("Ganni," "Sambas," "501"). Run both, fuse with reciprocal rank
+fusion. Postgres does both natively — `tsvector` alongside pgvector, no second
+datastore.
+
+Structured filters (price, category, in-stock, size, ships-to) apply as SQL
+predicates alongside the vector search. Let an LLM parse intent out of the query
+first, so "black barrel jeans under $200" becomes a filtered vector search rather
+than a literal string match.
+
+### Image search
+
+Upload a photo, screenshot an Instagram post, or shoot something in a store → embed
+→ ANN. Two distinct user intents that need different handling:
+
+- **"Find this exact thing"** — identity matching. Tight similarity threshold,
+  weight brand/logo/hardware cues.
+- **"Find things like this"** — taste matching. Loose threshold, diversity penalty
+  on the slate, allow category drift.
+
+Ship this as a visible toggle. Guessing wrong makes the feature feel broken.
+
+**The real gotcha:** user photos are domain-shifted from catalog photos. Catalog
+images are a flat garment on white; user photos are a person in a mirror in bad
+light with three other garments in frame. Embedding those raw gives poor matches. So
+the pipeline must **detect and crop to the garment first** (segmentation model, or
+just a detector + crop), and when multiple garments are present, ask which one — the
+"tap the item you mean" interaction. Skipping this step is the single most common
+reason image search underperforms.
+
+### Taste search (the differentiator)
+
+Any result set from the two modes above gets re-ranked by the user's taste vector.
+Same query, different results per person — and identical items ranked differently
+depending on whose account is asking. This is the thing competitors can't copy
+without the ranked-comparison data.
+
+### Serving
+
+~1M items with HNSW in pgvector is single-digit-millisecond retrieval on a modest
+instance. Do not reach for a dedicated vector database at this scale; revisit past
+~10M items.
 
 ### Sketch of the data model
 
