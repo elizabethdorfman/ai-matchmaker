@@ -1,0 +1,6 @@
+node_modules
+dist
+embed.log
+probe.cjs
+bench.mjs
+verify.mjs

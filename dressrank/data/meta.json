@@ -1,0 +1,13 @@
+{
+ "count": 1400,
+ "dim": 512,
+ "model": "Xenova/clip-vit-base-patch32",
+ "dimensions": [
+  "colour",
+  "print",
+  "silhouette",
+  "fabric",
+  "vibe",
+  "occasion"
+ ]
+}
