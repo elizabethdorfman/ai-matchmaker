@@ -1,0 +1,126 @@
+{
+  "generated_at": "2026-08-15T20:18:48.258Z",
+  "args": {
+    "brands": [
+      "madewell",
+      "ganni",
+      "quince",
+      "reformation",
+      "uniqlo",
+      "princess-polly"
+    ],
+    "group": "needs_tier2",
+    "max": 12,
+    "out": "data/items.jsonl",
+    "concurrency": 4
+  },
+  "report": [
+    {
+      "slug": "princess-polly",
+      "name": "Princess Polly",
+      "strategy": "shopify",
+      "items": 12,
+      "attempts": [
+        "shopify:12 items"
+      ],
+      "seconds": 1.2,
+      "avg_price": 59,
+      "median_price": 60,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 1,
+      "pct_with_image": 1,
+      "pct_categorized": 1
+    },
+    {
+      "slug": "madewell",
+      "name": "Madewell",
+      "strategy": "jsonld",
+      "items": 12,
+      "attempts": [
+        "shopify:products.json 404",
+        "jsonld:12 items"
+      ],
+      "seconds": 21.9,
+      "avg_price": 76,
+      "median_price": 70,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.33,
+      "pct_with_image": 1,
+      "pct_categorized": 0.92
+    },
+    {
+      "slug": "reformation",
+      "name": "Reformation",
+      "strategy": "jsonld",
+      "items": 12,
+      "attempts": [
+        "shopify:products.json 404",
+        "jsonld:12 items"
+      ],
+      "seconds": 22.7,
+      "avg_price": 137,
+      "median_price": 128,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.08,
+      "pct_with_image": 1,
+      "pct_categorized": 1
+    },
+    {
+      "slug": "uniqlo",
+      "name": "Uniqlo",
+      "strategy": "FAILED",
+      "items": 0,
+      "attempts": [
+        "shopify:products.json 404",
+        "jsonld:no-sitemap"
+      ],
+      "seconds": 17.2,
+      "avg_price": null,
+      "median_price": null,
+      "currency": null,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "pct_with_image": 0,
+      "pct_categorized": 0
+    },
+    {
+      "slug": "quince",
+      "name": "Quince",
+      "strategy": "jsonld",
+      "items": 12,
+      "attempts": [
+        "shopify:products.json 404",
+        "jsonld:12 items"
+      ],
+      "seconds": 63.5,
+      "avg_price": 537,
+      "median_price": 105,
+      "currency": "CAD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.83,
+      "pct_with_image": 0.92,
+      "pct_categorized": 0.75
+    },
+    {
+      "slug": "ganni",
+      "name": "GANNI",
+      "strategy": "FAILED",
+      "items": 0,
+      "attempts": [
+        "shopify:products.json 404",
+        "jsonld:no-jsonld-products (36/36 pages lacked Product)"
+      ],
+      "seconds": 86.5,
+      "avg_price": null,
+      "median_price": null,
+      "currency": null,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "pct_with_image": 0,
+      "pct_categorized": 0
+    }
+  ]
+}
