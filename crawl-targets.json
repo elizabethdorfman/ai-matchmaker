@@ -1,12 +1,5 @@
 {
   "_comment": "Seed crawl list. `v0` is the starter index — crawl these first. `backlog` is held for later, each with the reason it didn't make v0. `platform_guess` is a hint; the ingestion worker detects the real one. Domains need a verification pass before the first crawl.",
-  "_v0_criteria": {
-    "aesthetic": "Anthropologie-adjacent — eclectic, romantic, textured, printed, feminine. A coherent house look, not trend-chasing.",
-    "price": "Most items under $300.",
-    "fabric": "Natural-fiber-forward — cotton, linen, silk, wool, hemp, TENCEL. Not polyester at a markup.",
-    "scale": "Small and independent where possible. Founder-led, few or no physical locations.",
-    "crawlable": "Structured product data — Shopify /products.json or schema.org JSON-LD."
-  },
   "_fabric_gate": {
     "why": "'Good fabrics' is the criterion that separates a taste index from a catalog, and unlike aesthetic judgment it is machine-checkable — fiber composition sits in the Shopify payload or product copy for most brands.",
     "how": "During ingestion, parse fiber composition per item and compute a natural-fiber ratio (cotton, linen, wool, cashmere, silk, hemp, leather, TENCEL/lyocell). Roll up to a brand-level median.",
@@ -14,654 +7,12 @@
     "note": "This turns a taste criterion into an automated index gate, and feeds the Boutique Score in Feature 3 — cheap synthetics correlate hard with the chains we want to rank down. It should also be run against the v0 list itself as a check on these hand-picks."
   },
   "_price_gate": {
-    "band": "$50–300 AVERAGE item price",
-    "method": "Average of all variant prices per product (not minimum), then averaged across the brand's full catalog. Full pagination, not a first-page sample.",
-    "exclusions": "Non-apparel product types (home, furniture, tabletop, decor, candles, apothecary/beauty, books, pet) and junk SKUs (gift cards, shipping protection, swatches, samples, repairs, donations) are dropped before pricing.",
-    "currency": "products.json returns the store's default currency. Detected via /meta.json and converted at approximate rates (EUR 1.08, GBP 1.27, SEK 0.095, DKK 0.145). Rates are indicative, not live — treat borderline non-USD brands as provisional.",
-    "measured_on": "2026-08-15",
-    "coverage": "49 of 81 brands had a live catalog; 32 need tier-2 crawling before they can be priced."
+    "target": "Under $100 average preferred (tier A). $100–300 acceptable (tier B). No floor — cheaper is fine.",
+    "method": "Average of all variant prices per product, averaged across the catalog. First-page sample (250 products) is sufficient; full pagination is not required.",
+    "exclusions": "Non-apparel product types (home, furniture, decor, candles, apothecary/beauty, books, pet) and junk SKUs (gift cards, shipping protection, swatches, samples) dropped before pricing.",
+    "currency": "Detected via /meta.json, converted at approximate rates (EUR 1.08, GBP 1.27, SEK 0.095, DKK 0.145). Indicative, not live.",
+    "measured_on": "2026-08-15"
   },
-  "v0": [
-    {
-      "slug": "everlane",
-      "name": "Everlane",
-      "domain": "www.everlane.com",
-      "category": "casual",
-      "aesthetic": "transparent minimal",
-      "platform_guess": "shopify",
-      "note": "Verified crawlable — /products.json returns full catalog with fabric tags.",
-      "price": {
-        "avg_usd": 59,
-        "median_usd": 44,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 4992,
-        "n_excluded": 3,
-        "pct_items_50_300": 43,
-        "host": "www.everlane.com"
-      }
-    },
-    {
-      "slug": "nooworks",
-      "name": "Nooworks",
-      "domain": "nooworks.com",
-      "category": "indie-print",
-      "aesthetic": "SF illustrated print",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 79,
-        "median_usd": 64,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 789,
-        "n_excluded": 21,
-        "pct_items_50_300": 56,
-        "host": "nooworks.com"
-      }
-    },
-    {
-      "slug": "marine-layer",
-      "name": "Marine Layer",
-      "domain": "www.marinelayer.com",
-      "category": "casual",
-      "aesthetic": "SF soft casual",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 81,
-        "median_usd": 78,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 2432,
-        "n_excluded": 4,
-        "pct_items_50_300": 77,
-        "host": "www.marinelayer.com"
-      }
-    },
-    {
-      "slug": "lacausa",
-      "name": "Lacausa",
-      "domain": "lacausaclothing.com",
-      "category": "indie-natural",
-      "aesthetic": "LA easy",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 91,
-        "median_usd": 85,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 335,
-        "n_excluded": 1,
-        "pct_items_50_300": 73,
-        "host": "lacausaclothing.com"
-      }
-    },
-    {
-      "slug": "big-bud-press",
-      "name": "Big Bud Press",
-      "domain": "bigbudpress.com",
-      "category": "indie-print",
-      "aesthetic": "LA unisex color",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 97,
-        "median_usd": 68,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 322,
-        "n_excluded": 2,
-        "pct_items_50_300": 81,
-        "host": "bigbudpress.com"
-      }
-    },
-    {
-      "slug": "z-supply",
-      "name": "Z Supply",
-      "domain": "zsupply.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 99,
-        "median_usd": 98,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 30,
-        "n_excluded": 0,
-        "pct_items_50_300": 93,
-        "host": "zsupply.com"
-      }
-    },
-    {
-      "slug": "jungmaven",
-      "name": "Jungmaven",
-      "domain": "jungmaven.com",
-      "category": "indie-natural",
-      "aesthetic": "hemp basics",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 101,
-        "median_usd": 74,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 269,
-        "n_excluded": 7,
-        "pct_items_50_300": 84,
-        "host": "jungmaven.com"
-      }
-    },
-    {
-      "slug": "nisolo",
-      "name": "Nisolo",
-      "domain": "nisolo.com",
-      "category": "footwear",
-      "aesthetic": "ethical classic leather",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 102,
-        "median_usd": 98,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 170,
-        "n_excluded": 1,
-        "pct_items_50_300": 81,
-        "host": "nisolo.com"
-      }
-    },
-    {
-      "slug": "sundry",
-      "name": "Sundry",
-      "domain": "sundryclothing.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 103,
-        "median_usd": 88,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 398,
-        "n_excluded": 2,
-        "pct_items_50_300": 77,
-        "host": "sundryclothing.com"
-      }
-    },
-    {
-      "slug": "saltwater-luxe",
-      "name": "Saltwater Luxe",
-      "domain": "saltwaterluxe.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 104,
-        "median_usd": 98,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 1293,
-        "n_excluded": 1,
-        "pct_items_50_300": 92,
-        "host": "saltwaterluxe.com"
-      }
-    },
-    {
-      "slug": "velvet",
-      "name": "Velvet by Graham & Spencer",
-      "domain": "velvet-tees.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 107,
-        "median_usd": 99,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 1742,
-        "n_excluded": 8,
-        "pct_items_50_300": 87,
-        "host": "velvet-tees.com"
-      }
-    },
-    {
-      "slug": "baserange",
-      "name": "Baserange",
-      "domain": "baserange.com",
-      "category": "indie-natural",
-      "aesthetic": "soft minimal",
-      "note": "Organic cotton, silk, bamboo.",
-      "price": {
-        "avg_usd": 112,
-        "median_usd": 97,
-        "currency": "EUR",
-        "fx_applied": 1.08,
-        "n_products": 1036,
-        "n_excluded": 19,
-        "pct_items_50_300": 72,
-        "host": "baserange.com"
-      }
-    },
-    {
-      "slug": "lisa-says-gah",
-      "name": "Lisa Says Gah",
-      "domain": "lisasaysgah.com",
-      "category": "indie-print",
-      "aesthetic": "SF indie eclectic",
-      "platform_guess": "shopify",
-      "note": "Also a multi-brand stockist — good source of adjacent small labels.",
-      "price": {
-        "avg_usd": 117,
-        "median_usd": 108,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 267,
-        "n_excluded": 2,
-        "pct_items_50_300": 89,
-        "host": "lisasaysgah.com"
-      }
-    },
-    {
-      "slug": "faherty",
-      "name": "Faherty",
-      "domain": "fahertybrand.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 125,
-        "median_usd": 114,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 2158,
-        "n_excluded": 28,
-        "pct_items_50_300": 93,
-        "host": "fahertybrand.com"
-      }
-    },
-    {
-      "slug": "with-jean",
-      "name": "With Jéan",
-      "domain": "withjean.com",
-      "category": "indie-print",
-      "aesthetic": "Australian romantic",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 126,
-        "median_usd": 134,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 392,
-        "n_excluded": 1,
-        "pct_items_50_300": 86,
-        "host": "withjean.com"
-      }
-    },
-    {
-      "slug": "whimsy-row",
-      "name": "Whimsy + Row",
-      "domain": "whimsyandrow.com",
-      "category": "indie-natural",
-      "aesthetic": "LA slow",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 130,
-        "median_usd": 158,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 14,
-        "n_excluded": 20,
-        "pct_items_50_300": 86,
-        "host": "whimsyandrow.com"
-      }
-    },
-    {
-      "slug": "nation-ltd",
-      "name": "Nation LTD",
-      "domain": "nationltd.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 131,
-        "median_usd": 124,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 1804,
-        "n_excluded": 1,
-        "pct_items_50_300": 91,
-        "host": "nationltd.com"
-      }
-    },
-    {
-      "slug": "naadam",
-      "name": "NAADAM",
-      "domain": "naadam.co",
-      "category": "knitwear",
-      "aesthetic": "accessible cashmere",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 131,
-        "median_usd": 112,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 443,
-        "n_excluded": 4,
-        "pct_items_50_300": 90,
-        "host": "naadam.co"
-      }
-    },
-    {
-      "slug": "rouje",
-      "name": "Rouje",
-      "domain": "www.rouje.com",
-      "category": "french",
-      "aesthetic": "Parisian sensual",
-      "price": {
-        "avg_usd": 135,
-        "median_usd": 121,
-        "currency": "EUR",
-        "fx_applied": 1.08,
-        "n_products": 1167,
-        "n_excluded": 0,
-        "pct_items_50_300": 83,
-        "host": "www.rouje.com"
-      }
-    },
-    {
-      "slug": "stine-goya",
-      "name": "Stine Goya",
-      "domain": "stinegoya.com",
-      "price": {
-        "avg_usd": 158,
-        "median_usd": 123,
-        "currency": "DKK",
-        "fx_applied": 0.145,
-        "n_products": 522,
-        "n_excluded": 1,
-        "pct_items_50_300": 8,
-        "host": "stinegoya.com"
-      }
-    },
-    {
-      "slug": "alex-mill",
-      "name": "Alex Mill",
-      "domain": "alexmill.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 164,
-        "median_usd": 165,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 662,
-        "n_excluded": 4,
-        "pct_items_50_300": 78,
-        "host": "alexmill.com"
-      }
-    },
-    {
-      "slug": "caron-callahan",
-      "name": "Caron Callahan",
-      "domain": "caroncallahan.com",
-      "category": "indie-natural",
-      "aesthetic": "NY relaxed",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 166,
-        "median_usd": 150,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 109,
-        "n_excluded": 2,
-        "pct_items_50_300": 93,
-        "host": "caroncallahan.com"
-      }
-    },
-    {
-      "slug": "cleobella",
-      "name": "Cleobella",
-      "domain": "cleobella.com",
-      "category": "romantic",
-      "aesthetic": "artisan bohemian",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 188,
-        "median_usd": 178,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 372,
-        "n_excluded": 1,
-        "pct_items_50_300": 86,
-        "host": "cleobella.com"
-      }
-    },
-    {
-      "slug": "farm-rio",
-      "name": "FARM Rio",
-      "domain": "www.farmrio.com",
-      "category": "indie-print",
-      "aesthetic": "Brazilian print",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 198,
-        "median_usd": 180,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 1072,
-        "n_excluded": 10,
-        "pct_items_50_300": 86,
-        "host": "www.farmrio.com"
-      }
-    },
-    {
-      "slug": "triarchy",
-      "name": "Triarchy",
-      "domain": "triarchy.com",
-      "category": "denim",
-      "aesthetic": "sustainable denim",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 205,
-        "median_usd": 184,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 28,
-        "n_excluded": 1,
-        "pct_items_50_300": 82,
-        "host": "triarchy.com"
-      }
-    },
-    {
-      "slug": "cuyana",
-      "name": "Cuyana",
-      "domain": "www.cuyana.com",
-      "category": "chain",
-      "aesthetic": "",
-      "price": {
-        "avg_usd": 205,
-        "median_usd": 168,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 898,
-        "n_excluded": 14,
-        "pct_items_50_300": 72,
-        "host": "www.cuyana.com"
-      }
-    },
-    {
-      "slug": "rachel-antonoff",
-      "name": "Rachel Antonoff",
-      "domain": "rachelantonoff.com",
-      "category": "romantic",
-      "aesthetic": "playful illustrated",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 212,
-        "median_usd": 198,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 238,
-        "n_excluded": 2,
-        "pct_items_50_300": 82,
-        "host": "rachelantonoff.com"
-      }
-    },
-    {
-      "slug": "mirth",
-      "name": "Mirth",
-      "domain": "mirthcaftans.com",
-      "category": "romantic",
-      "aesthetic": "block-print caftan",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 223,
-        "median_usd": 228,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 486,
-        "n_excluded": 3,
-        "pct_items_50_300": 76,
-        "host": "mirthcaftans.com"
-      }
-    },
-    {
-      "slug": "agolde",
-      "name": "AGOLDE",
-      "domain": "agolde.com",
-      "category": "denim",
-      "aesthetic": "LA vintage denim",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 229,
-        "median_usd": 238,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 682,
-        "n_excluded": 3,
-        "pct_items_50_300": 92,
-        "host": "agolde.com"
-      }
-    },
-    {
-      "slug": "ozma",
-      "name": "Ozma of California",
-      "domain": "ozmaofcalifornia.com",
-      "category": "indie-natural",
-      "aesthetic": "quiet natural fiber",
-      "platform_guess": "shopify",
-      "note": "Silk/hemp/cotton, small-batch — near-ideal fabric profile.",
-      "price": {
-        "avg_usd": 231,
-        "median_usd": 258,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 202,
-        "n_excluded": 1,
-        "pct_items_50_300": 86,
-        "host": "ozmaofcalifornia.com"
-      }
-    },
-    {
-      "slug": "xirena",
-      "name": "Xirena",
-      "domain": "xirena.com",
-      "category": "romantic",
-      "aesthetic": "soft cotton/silk",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 236,
-        "median_usd": 225,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 808,
-        "n_excluded": 1,
-        "pct_items_50_300": 86,
-        "host": "xirena.com"
-      }
-    },
-    {
-      "slug": "christy-dawn",
-      "name": "Christy Dawn",
-      "domain": "christydawn.com",
-      "category": "romantic",
-      "aesthetic": "vintage prairie",
-      "platform_guess": "shopify",
-      "note": "Deadstock and regenerative cotton — strong fabric story.",
-      "price": {
-        "avg_usd": 244,
-        "median_usd": 228,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 399,
-        "n_excluded": 50,
-        "pct_items_50_300": 59,
-        "host": "christydawn.com"
-      }
-    },
-    {
-      "slug": "paloma-wool",
-      "name": "Paloma Wool",
-      "domain": "palomawool.com",
-      "category": "indie-print",
-      "aesthetic": "artful Barcelona",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 258,
-        "median_usd": 205,
-        "currency": "EUR",
-        "fx_applied": 1.08,
-        "n_products": 816,
-        "n_excluded": 1,
-        "pct_items_50_300": 81,
-        "host": "palomawool.com"
-      }
-    },
-    {
-      "slug": "loeffler-randall",
-      "name": "Loeffler Randall",
-      "domain": "www.loefflerrandall.com",
-      "category": "footwear",
-      "aesthetic": "party shoe",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 263,
-        "median_usd": 250,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 817,
-        "n_excluded": 3,
-        "pct_items_50_300": 67,
-        "host": "www.loefflerrandall.com"
-      }
-    },
-    {
-      "slug": "musier",
-      "name": "Musier Paris",
-      "domain": "musier-paris.com",
-      "category": "french",
-      "aesthetic": "Parisian modern",
-      "price": {
-        "avg_usd": 265,
-        "median_usd": 268,
-        "currency": "EUR",
-        "fx_applied": 1.08,
-        "n_products": 46,
-        "n_excluded": 0,
-        "pct_items_50_300": 76,
-        "host": "musier-paris.com"
-      }
-    },
-    {
-      "slug": "freda-salvador",
-      "name": "Freda Salvador",
-      "domain": "fredasalvador.com",
-      "category": "footwear",
-      "aesthetic": "SF handcrafted",
-      "platform_guess": "shopify",
-      "price": {
-        "avg_usd": 294,
-        "median_usd": 261,
-        "currency": "USD",
-        "fx_applied": 1.0,
-        "n_products": 479,
-        "n_excluded": 1,
-        "pct_items_50_300": 52,
-        "host": "fredasalvador.com"
-      }
-    }
-  ],
   "backlog": [
     {
       "slug": "toteme",
@@ -695,7 +46,7 @@
         "pct_items_50_300": 54,
         "host": "staud.clothing"
       },
-      "hold_reason": "measured average $335 — above the $50–300 band"
+      "hold_reason": "average $335 — above the $300 ceiling"
     },
     {
       "slug": "doen",
@@ -714,7 +65,7 @@
         "pct_items_50_300": 58,
         "host": "shopdoen.com"
       },
-      "hold_reason": "measured average $352 — above the $50–300 band"
+      "hold_reason": "average $352 — above the $300 ceiling"
     },
     {
       "slug": "rachel-comey",
@@ -730,7 +81,7 @@
         "pct_items_50_300": 17,
         "host": "www.rachelcomey.com"
       },
-      "hold_reason": "measured average $606 — above the $50–300 band"
+      "hold_reason": "average $606 — above the $300 ceiling"
     },
     {
       "slug": "extreme-cashmere",
@@ -746,7 +97,7 @@
         "pct_items_50_300": 18,
         "host": "extreme-cashmere.com"
       },
-      "hold_reason": "measured average $647 — above the $50–300 band"
+      "hold_reason": "average $647 — above the $300 ceiling"
     },
     {
       "slug": "jenni-kayne",
@@ -764,7 +115,7 @@
         "pct_items_50_300": 38,
         "host": "www.jennikayne.com"
       },
-      "hold_reason": "measured average $674 — above the $50–300 band"
+      "hold_reason": "average $674 — above the $300 ceiling"
     },
     {
       "slug": "simone-rocha",
@@ -780,7 +131,7 @@
         "pct_items_50_300": 29,
         "host": "www.simonerocha.com"
       },
-      "hold_reason": "measured average $707 — above the $50–300 band"
+      "hold_reason": "average $707 — above the $300 ceiling"
     },
     {
       "slug": "nili-lotan",
@@ -796,7 +147,7 @@
         "pct_items_50_300": 15,
         "host": "www.nililotan.com"
       },
-      "hold_reason": "measured average $751 — above the $50–300 band"
+      "hold_reason": "average $751 — above the $300 ceiling"
     },
     {
       "slug": "ulla-johnson",
@@ -812,7 +163,7 @@
         "pct_items_50_300": 10,
         "host": "www.ullajohnson.com"
       },
-      "hold_reason": "measured average $773 — above the $50–300 band"
+      "hold_reason": "average $773 — above the $300 ceiling"
     },
     {
       "slug": "lemaire",
@@ -828,7 +179,7 @@
         "pct_items_50_300": 18,
         "host": "www.lemaire.fr"
       },
-      "hold_reason": "measured average $797 — above the $50–300 band"
+      "hold_reason": "average $797 — above the $300 ceiling"
     },
     {
       "slug": "cecilie-bahnsen",
@@ -844,7 +195,7 @@
         "pct_items_50_300": 2,
         "host": "ceciliebahnsen.com"
       },
-      "hold_reason": "measured average $1688 — above the $50–300 band"
+      "hold_reason": "average $1688 — above the $300 ceiling"
     },
     {
       "slug": "khaite",
@@ -860,7 +211,7 @@
         "pct_items_50_300": 0,
         "host": "khaite.com"
       },
-      "hold_reason": "measured average $2999 — above the $50–300 band"
+      "hold_reason": "average $2999 — above the $300 ceiling"
     },
     {
       "slug": "the-row",
@@ -876,7 +227,7 @@
         "pct_items_50_300": 0,
         "host": "www.therow.com"
       },
-      "hold_reason": "measured average $47383 — above the $50–300 band"
+      "hold_reason": "average $47383 — above the $300 ceiling"
     }
   ],
   "unverified": [
@@ -1226,6 +577,840 @@
         "status": "unverified",
         "reason": "no /products.json — needs tier-2 JSON-LD crawl"
       }
+    },
+    {
+      "slug": "thought",
+      "name": "Thought",
+      "domain": "www.wearethought.com",
+      "category": "indie-natural",
+      "aesthetic": "UK hemp/bamboo",
+      "price": {
+        "status": "suspect",
+        "note": "first-page average came to ~$13 — almost certainly an accessories- or sale-heavy page, not representative. Re-sample before use."
+      }
+    }
+  ],
+  "v0_tier_a_under_100": [
+    {
+      "slug": "colorful-standard",
+      "name": "Colorful Standard",
+      "domain": "colorfulstandard.com",
+      "category": "indie-natural",
+      "aesthetic": "Danish organic-cotton essentials",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 47,
+        "currency": "EUR",
+        "n_products": 238,
+        "host": "colorfulstandard.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "organic-basics",
+      "name": "Organic Basics",
+      "domain": "organicbasics.com",
+      "category": "indie-natural",
+      "aesthetic": "Copenhagen organic basics",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 50,
+        "currency": "EUR",
+        "n_products": 245,
+        "host": "organicbasics.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "frank-and-oak",
+      "name": "Frank And Oak",
+      "domain": "www.frankandoak.com",
+      "category": "indie-natural",
+      "aesthetic": "Montreal sustainable casual",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 50,
+        "currency": "CAD",
+        "n_products": 81,
+        "host": "www.frankandoak.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "everlane",
+      "name": "Everlane",
+      "domain": "www.everlane.com",
+      "category": "casual",
+      "aesthetic": "transparent minimal",
+      "platform_guess": "shopify",
+      "note": "Verified crawlable — /products.json returns full catalog with fabric tags.",
+      "price": {
+        "avg_usd": 59,
+        "median_usd": 44,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 4992,
+        "n_excluded": 3,
+        "pct_items_50_300": 43,
+        "host": "www.everlane.com"
+      },
+      "tier": "A"
+    },
+    {
+      "slug": "nooworks",
+      "name": "Nooworks",
+      "domain": "nooworks.com",
+      "category": "indie-print",
+      "aesthetic": "SF illustrated print",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 79,
+        "median_usd": 64,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 789,
+        "n_excluded": 21,
+        "pct_items_50_300": 56,
+        "host": "nooworks.com"
+      },
+      "tier": "A"
+    },
+    {
+      "slug": "marine-layer",
+      "name": "Marine Layer",
+      "domain": "www.marinelayer.com",
+      "category": "casual",
+      "aesthetic": "SF soft casual",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 81,
+        "median_usd": 78,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 2432,
+        "n_excluded": 4,
+        "pct_items_50_300": 77,
+        "host": "www.marinelayer.com"
+      },
+      "tier": "A"
+    },
+    {
+      "slug": "tradlands",
+      "name": "Tradlands",
+      "domain": "tradlands.com",
+      "category": "indie-natural",
+      "aesthetic": "womenswear-via-menswear shirting",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 82,
+        "currency": "USD",
+        "n_products": 40,
+        "host": "tradlands.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "harvest-mill",
+      "name": "Harvest & Mill",
+      "domain": "harvestandmill.com",
+      "category": "indie-natural",
+      "aesthetic": "US-grown organic cotton",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 83,
+        "currency": "USD",
+        "n_products": 134,
+        "host": "harvestandmill.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "lacausa",
+      "name": "Lacausa",
+      "domain": "lacausaclothing.com",
+      "category": "indie-natural",
+      "aesthetic": "LA easy",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 91,
+        "median_usd": 85,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 335,
+        "n_excluded": 1,
+        "pct_items_50_300": 73,
+        "host": "lacausaclothing.com"
+      },
+      "tier": "A"
+    },
+    {
+      "slug": "outerknown",
+      "name": "Outerknown",
+      "domain": "www.outerknown.com",
+      "category": "indie-natural",
+      "aesthetic": "surf-rooted sustainable",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 91,
+        "currency": "USD",
+        "n_products": 214,
+        "host": "www.outerknown.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "wildfang",
+      "name": "Wildfang",
+      "domain": "www.wildfang.com",
+      "category": "indie-natural",
+      "aesthetic": "tomboy tailoring",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 91,
+        "currency": "USD",
+        "n_products": 212,
+        "host": "www.wildfang.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "mate-the-label",
+      "name": "Mate the Label",
+      "domain": "matethelabel.com",
+      "category": "indie-natural",
+      "aesthetic": "LA organic clean basics",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 95,
+        "currency": "USD",
+        "n_products": 248,
+        "host": "matethelabel.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "big-bud-press",
+      "name": "Big Bud Press",
+      "domain": "bigbudpress.com",
+      "category": "indie-print",
+      "aesthetic": "LA unisex color",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 97,
+        "median_usd": 68,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 322,
+        "n_excluded": 2,
+        "pct_items_50_300": 81,
+        "host": "bigbudpress.com"
+      },
+      "tier": "A"
+    },
+    {
+      "slug": "toad-co",
+      "name": "Toad&Co",
+      "domain": "www.toadandco.com",
+      "category": "indie-natural",
+      "aesthetic": "outdoor-leaning natural fiber",
+      "platform_guess": "shopify",
+      "tier": "A",
+      "price": {
+        "avg_usd": 97,
+        "currency": "USD",
+        "n_products": 250,
+        "host": "www.toadandco.com",
+        "sample": "first-page (250)"
+      }
+    },
+    {
+      "slug": "z-supply",
+      "name": "Z Supply",
+      "domain": "zsupply.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 99,
+        "median_usd": 98,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 30,
+        "n_excluded": 0,
+        "pct_items_50_300": 93,
+        "host": "zsupply.com"
+      },
+      "tier": "A"
+    }
+  ],
+  "v0_tier_b_100_300": [
+    {
+      "slug": "jungmaven",
+      "name": "Jungmaven",
+      "domain": "jungmaven.com",
+      "category": "indie-natural",
+      "aesthetic": "hemp basics",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 101,
+        "median_usd": 74,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 269,
+        "n_excluded": 7,
+        "pct_items_50_300": 84,
+        "host": "jungmaven.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "nisolo",
+      "name": "Nisolo",
+      "domain": "nisolo.com",
+      "category": "footwear",
+      "aesthetic": "ethical classic leather",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 102,
+        "median_usd": 98,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 170,
+        "n_excluded": 1,
+        "pct_items_50_300": 81,
+        "host": "nisolo.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "sundry",
+      "name": "Sundry",
+      "domain": "sundryclothing.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 103,
+        "median_usd": 88,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 398,
+        "n_excluded": 2,
+        "pct_items_50_300": 77,
+        "host": "sundryclothing.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "saltwater-luxe",
+      "name": "Saltwater Luxe",
+      "domain": "saltwaterluxe.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 104,
+        "median_usd": 98,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1293,
+        "n_excluded": 1,
+        "pct_items_50_300": 92,
+        "host": "saltwaterluxe.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "velvet",
+      "name": "Velvet by Graham & Spencer",
+      "domain": "velvet-tees.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 107,
+        "median_usd": 99,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1742,
+        "n_excluded": 8,
+        "pct_items_50_300": 87,
+        "host": "velvet-tees.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "baserange",
+      "name": "Baserange",
+      "domain": "baserange.com",
+      "category": "indie-natural",
+      "aesthetic": "soft minimal",
+      "note": "Organic cotton, silk, bamboo.",
+      "price": {
+        "avg_usd": 112,
+        "median_usd": 97,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 1036,
+        "n_excluded": 19,
+        "pct_items_50_300": 72,
+        "host": "baserange.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "lisa-says-gah",
+      "name": "Lisa Says Gah",
+      "domain": "lisasaysgah.com",
+      "category": "indie-print",
+      "aesthetic": "SF indie eclectic",
+      "platform_guess": "shopify",
+      "note": "Also a multi-brand stockist — good source of adjacent small labels.",
+      "price": {
+        "avg_usd": 117,
+        "median_usd": 108,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 267,
+        "n_excluded": 2,
+        "pct_items_50_300": 89,
+        "host": "lisasaysgah.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "faherty",
+      "name": "Faherty",
+      "domain": "fahertybrand.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 125,
+        "median_usd": 114,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 2158,
+        "n_excluded": 28,
+        "pct_items_50_300": 93,
+        "host": "fahertybrand.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "with-jean",
+      "name": "With Jéan",
+      "domain": "withjean.com",
+      "category": "indie-print",
+      "aesthetic": "Australian romantic",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 126,
+        "median_usd": 134,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 392,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "withjean.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "whimsy-row",
+      "name": "Whimsy + Row",
+      "domain": "whimsyandrow.com",
+      "category": "indie-natural",
+      "aesthetic": "LA slow",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 130,
+        "median_usd": 158,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 14,
+        "n_excluded": 20,
+        "pct_items_50_300": 86,
+        "host": "whimsyandrow.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "nation-ltd",
+      "name": "Nation LTD",
+      "domain": "nationltd.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 131,
+        "median_usd": 124,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1804,
+        "n_excluded": 1,
+        "pct_items_50_300": 91,
+        "host": "nationltd.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "naadam",
+      "name": "NAADAM",
+      "domain": "naadam.co",
+      "category": "knitwear",
+      "aesthetic": "accessible cashmere",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 131,
+        "median_usd": 112,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 443,
+        "n_excluded": 4,
+        "pct_items_50_300": 90,
+        "host": "naadam.co"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "rouje",
+      "name": "Rouje",
+      "domain": "www.rouje.com",
+      "category": "french",
+      "aesthetic": "Parisian sensual",
+      "price": {
+        "avg_usd": 135,
+        "median_usd": 121,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 1167,
+        "n_excluded": 0,
+        "pct_items_50_300": 83,
+        "host": "www.rouje.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "stine-goya",
+      "name": "Stine Goya",
+      "domain": "stinegoya.com",
+      "price": {
+        "avg_usd": 158,
+        "median_usd": 123,
+        "currency": "DKK",
+        "fx_applied": 0.145,
+        "n_products": 522,
+        "n_excluded": 1,
+        "pct_items_50_300": 8,
+        "host": "stinegoya.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "alex-mill",
+      "name": "Alex Mill",
+      "domain": "alexmill.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 164,
+        "median_usd": 165,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 662,
+        "n_excluded": 4,
+        "pct_items_50_300": 78,
+        "host": "alexmill.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "caron-callahan",
+      "name": "Caron Callahan",
+      "domain": "caroncallahan.com",
+      "category": "indie-natural",
+      "aesthetic": "NY relaxed",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 166,
+        "median_usd": 150,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 109,
+        "n_excluded": 2,
+        "pct_items_50_300": 93,
+        "host": "caroncallahan.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "cleobella",
+      "name": "Cleobella",
+      "domain": "cleobella.com",
+      "category": "romantic",
+      "aesthetic": "artisan bohemian",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 188,
+        "median_usd": 178,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 372,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "cleobella.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "farm-rio",
+      "name": "FARM Rio",
+      "domain": "www.farmrio.com",
+      "category": "indie-print",
+      "aesthetic": "Brazilian print",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 198,
+        "median_usd": 180,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1072,
+        "n_excluded": 10,
+        "pct_items_50_300": 86,
+        "host": "www.farmrio.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "triarchy",
+      "name": "Triarchy",
+      "domain": "triarchy.com",
+      "category": "denim",
+      "aesthetic": "sustainable denim",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 205,
+        "median_usd": 184,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 28,
+        "n_excluded": 1,
+        "pct_items_50_300": 82,
+        "host": "triarchy.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "cuyana",
+      "name": "Cuyana",
+      "domain": "www.cuyana.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 205,
+        "median_usd": 168,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 898,
+        "n_excluded": 14,
+        "pct_items_50_300": 72,
+        "host": "www.cuyana.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "rachel-antonoff",
+      "name": "Rachel Antonoff",
+      "domain": "rachelantonoff.com",
+      "category": "romantic",
+      "aesthetic": "playful illustrated",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 212,
+        "median_usd": 198,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 238,
+        "n_excluded": 2,
+        "pct_items_50_300": 82,
+        "host": "rachelantonoff.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "mirth",
+      "name": "Mirth",
+      "domain": "mirthcaftans.com",
+      "category": "romantic",
+      "aesthetic": "block-print caftan",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 223,
+        "median_usd": 228,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 486,
+        "n_excluded": 3,
+        "pct_items_50_300": 76,
+        "host": "mirthcaftans.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "agolde",
+      "name": "AGOLDE",
+      "domain": "agolde.com",
+      "category": "denim",
+      "aesthetic": "LA vintage denim",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 229,
+        "median_usd": 238,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 682,
+        "n_excluded": 3,
+        "pct_items_50_300": 92,
+        "host": "agolde.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "ozma",
+      "name": "Ozma of California",
+      "domain": "ozmaofcalifornia.com",
+      "category": "indie-natural",
+      "aesthetic": "quiet natural fiber",
+      "platform_guess": "shopify",
+      "note": "Silk/hemp/cotton, small-batch — near-ideal fabric profile.",
+      "price": {
+        "avg_usd": 231,
+        "median_usd": 258,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 202,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "ozmaofcalifornia.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "xirena",
+      "name": "Xirena",
+      "domain": "xirena.com",
+      "category": "romantic",
+      "aesthetic": "soft cotton/silk",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 236,
+        "median_usd": 225,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 808,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "xirena.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "christy-dawn",
+      "name": "Christy Dawn",
+      "domain": "christydawn.com",
+      "category": "romantic",
+      "aesthetic": "vintage prairie",
+      "platform_guess": "shopify",
+      "note": "Deadstock and regenerative cotton — strong fabric story.",
+      "price": {
+        "avg_usd": 244,
+        "median_usd": 228,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 399,
+        "n_excluded": 50,
+        "pct_items_50_300": 59,
+        "host": "christydawn.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "paloma-wool",
+      "name": "Paloma Wool",
+      "domain": "palomawool.com",
+      "category": "indie-print",
+      "aesthetic": "artful Barcelona",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 258,
+        "median_usd": 205,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 816,
+        "n_excluded": 1,
+        "pct_items_50_300": 81,
+        "host": "palomawool.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "loeffler-randall",
+      "name": "Loeffler Randall",
+      "domain": "www.loefflerrandall.com",
+      "category": "footwear",
+      "aesthetic": "party shoe",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 263,
+        "median_usd": 250,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 817,
+        "n_excluded": 3,
+        "pct_items_50_300": 67,
+        "host": "www.loefflerrandall.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "musier",
+      "name": "Musier Paris",
+      "domain": "musier-paris.com",
+      "category": "french",
+      "aesthetic": "Parisian modern",
+      "price": {
+        "avg_usd": 265,
+        "median_usd": 268,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 46,
+        "n_excluded": 0,
+        "pct_items_50_300": 76,
+        "host": "musier-paris.com"
+      },
+      "tier": "B"
+    },
+    {
+      "slug": "freda-salvador",
+      "name": "Freda Salvador",
+      "domain": "fredasalvador.com",
+      "category": "footwear",
+      "aesthetic": "SF handcrafted",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 294,
+        "median_usd": 261,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 479,
+        "n_excluded": 1,
+        "pct_items_50_300": 52,
+        "host": "fredasalvador.com"
+      },
+      "tier": "B"
     }
   ]
 }
