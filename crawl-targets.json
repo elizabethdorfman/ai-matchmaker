@@ -14,11 +14,12 @@
     "note": "This turns a taste criterion into an automated index gate, and feeds the Boutique Score in Feature 3 — cheap synthetics correlate hard with the chains we want to rank down. It should also be run against the v0 list itself as a check on these hand-picks."
   },
   "_price_gate": {
-    "band": "$50–300 median item price",
-    "method": "One price per product (min variant) from /products.json, so size variants don't skew the median. Median, not mean — a few expensive coats shouldn't disqualify a brand.",
+    "band": "$50–300 AVERAGE item price",
+    "method": "Average of all variant prices per product (not minimum), then averaged across the brand's full catalog. Full pagination, not a first-page sample.",
+    "exclusions": "Non-apparel product types (home, furniture, tabletop, decor, candles, apothecary/beauty, books, pet) and junk SKUs (gift cards, shipping protection, swatches, samples, repairs, donations) are dropped before pricing.",
+    "currency": "products.json returns the store's default currency. Detected via /meta.json and converted at approximate rates (EUR 1.08, GBP 1.27, SEK 0.095, DKK 0.145). Rates are indicative, not live — treat borderline non-USD brands as provisional.",
     "measured_on": "2026-08-15",
-    "currency_caveat": "products.json returns prices in the store's DEFAULT CURRENCY, not USD. Non-US brands are therefore unreliable until normalized — Stine Goya's 1399 is almost certainly DKK (~$200), not $1399. Normalize via the shop's currency field before trusting any non-US median.",
-    "coverage": "49 of 86 brands had a live catalog. The other 37 need tier-2 (schema.org JSON-LD) crawling before they can be priced."
+    "coverage": "49 of 81 brands had a live catalog; 32 need tier-2 crawling before they can be priced."
   },
   "v0": [
     {
@@ -29,77 +30,33 @@
       "aesthetic": "transparent minimal",
       "platform_guess": "shopify",
       "note": "Verified crawlable — /products.json returns full catalog with fabric tags.",
-      "verified": {
-        "median_usd": 50,
-        "mean_usd": 58,
-        "n_products": 250,
-        "pct_50_300": 52,
-        "host": "www.everlane.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 59,
+        "median_usd": 44,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 4992,
+        "n_excluded": 3,
+        "pct_items_50_300": 43,
+        "host": "www.everlane.com"
       }
     },
     {
-      "slug": "big-bud-press",
-      "name": "Big Bud Press",
-      "domain": "bigbudpress.com",
+      "slug": "nooworks",
+      "name": "Nooworks",
+      "domain": "nooworks.com",
       "category": "indie-print",
-      "aesthetic": "LA unisex color",
+      "aesthetic": "SF illustrated print",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 73,
-        "mean_usd": 97,
-        "n_products": 250,
-        "pct_50_300": 84,
-        "host": "bigbudpress.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "jungmaven",
-      "name": "Jungmaven",
-      "domain": "jungmaven.com",
-      "category": "indie-natural",
-      "aesthetic": "hemp basics",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 76,
-        "mean_usd": 105,
-        "n_products": 250,
-        "pct_50_300": 82,
-        "host": "jungmaven.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "lacausa",
-      "name": "Lacausa",
-      "domain": "lacausaclothing.com",
-      "category": "indie-natural",
-      "aesthetic": "LA easy",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 78,
-        "mean_usd": 90,
-        "n_products": 250,
-        "pct_50_300": 74,
-        "host": "lacausaclothing.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "nisolo",
-      "name": "Nisolo",
-      "domain": "nisolo.com",
-      "category": "footwear",
-      "aesthetic": "ethical classic leather",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 96,
-        "mean_usd": 101,
-        "n_products": 172,
-        "pct_50_300": 80,
-        "host": "nisolo.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 79,
+        "median_usd": 64,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 789,
+        "n_excluded": 21,
+        "pct_items_50_300": 56,
+        "host": "nooworks.com"
       }
     },
     {
@@ -109,43 +66,51 @@
       "category": "casual",
       "aesthetic": "SF soft casual",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 98,
-        "mean_usd": 98,
-        "n_products": 250,
-        "pct_50_300": 87,
-        "host": "www.marinelayer.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 81,
+        "median_usd": 78,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 2432,
+        "n_excluded": 4,
+        "pct_items_50_300": 77,
+        "host": "www.marinelayer.com"
       }
     },
     {
-      "slug": "sundry",
-      "name": "Sundry",
-      "domain": "sundryclothing.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "median_usd": 98,
-        "mean_usd": 111,
-        "n_products": 250,
-        "pct_50_300": 95,
-        "host": "sundryclothing.com",
-        "source": "products.json"
+      "slug": "lacausa",
+      "name": "Lacausa",
+      "domain": "lacausaclothing.com",
+      "category": "indie-natural",
+      "aesthetic": "LA easy",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 91,
+        "median_usd": 85,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 335,
+        "n_excluded": 1,
+        "pct_items_50_300": 73,
+        "host": "lacausaclothing.com"
       }
     },
     {
-      "slug": "saltwater-luxe",
-      "name": "Saltwater Luxe",
-      "domain": "saltwaterluxe.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "median_usd": 98,
-        "mean_usd": 106,
-        "n_products": 250,
-        "pct_50_300": 91,
-        "host": "saltwaterluxe.com",
-        "source": "products.json"
+      "slug": "big-bud-press",
+      "name": "Big Bud Press",
+      "domain": "bigbudpress.com",
+      "category": "indie-print",
+      "aesthetic": "LA unisex color",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 97,
+        "median_usd": 68,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 322,
+        "n_excluded": 2,
+        "pct_items_50_300": 81,
+        "host": "bigbudpress.com"
       }
     },
     {
@@ -154,28 +119,120 @@
       "domain": "zsupply.com",
       "category": "chain",
       "aesthetic": "",
-      "verified": {
+      "price": {
+        "avg_usd": 99,
         "median_usd": 98,
-        "mean_usd": 99,
+        "currency": "USD",
+        "fx_applied": 1.0,
         "n_products": 30,
-        "pct_50_300": 93,
-        "host": "zsupply.com",
-        "source": "products.json"
+        "n_excluded": 0,
+        "pct_items_50_300": 93,
+        "host": "zsupply.com"
       }
     },
     {
-      "slug": "nation-ltd",
-      "name": "Nation LTD",
-      "domain": "nationltd.com",
+      "slug": "jungmaven",
+      "name": "Jungmaven",
+      "domain": "jungmaven.com",
+      "category": "indie-natural",
+      "aesthetic": "hemp basics",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 101,
+        "median_usd": 74,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 269,
+        "n_excluded": 7,
+        "pct_items_50_300": 84,
+        "host": "jungmaven.com"
+      }
+    },
+    {
+      "slug": "nisolo",
+      "name": "Nisolo",
+      "domain": "nisolo.com",
+      "category": "footwear",
+      "aesthetic": "ethical classic leather",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 102,
+        "median_usd": 98,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 170,
+        "n_excluded": 1,
+        "pct_items_50_300": 81,
+        "host": "nisolo.com"
+      }
+    },
+    {
+      "slug": "sundry",
+      "name": "Sundry",
+      "domain": "sundryclothing.com",
       "category": "chain",
       "aesthetic": "",
-      "verified": {
+      "price": {
+        "avg_usd": 103,
+        "median_usd": 88,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 398,
+        "n_excluded": 2,
+        "pct_items_50_300": 77,
+        "host": "sundryclothing.com"
+      }
+    },
+    {
+      "slug": "saltwater-luxe",
+      "name": "Saltwater Luxe",
+      "domain": "saltwaterluxe.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 104,
+        "median_usd": 98,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1293,
+        "n_excluded": 1,
+        "pct_items_50_300": 92,
+        "host": "saltwaterluxe.com"
+      }
+    },
+    {
+      "slug": "velvet",
+      "name": "Velvet by Graham & Spencer",
+      "domain": "velvet-tees.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 107,
         "median_usd": 99,
-        "mean_usd": 106,
-        "n_products": 250,
-        "pct_50_300": 73,
-        "host": "nationltd.com",
-        "source": "products.json"
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1742,
+        "n_excluded": 8,
+        "pct_items_50_300": 87,
+        "host": "velvet-tees.com"
+      }
+    },
+    {
+      "slug": "baserange",
+      "name": "Baserange",
+      "domain": "baserange.com",
+      "category": "indie-natural",
+      "aesthetic": "soft minimal",
+      "note": "Organic cotton, silk, bamboo.",
+      "price": {
+        "avg_usd": 112,
+        "median_usd": 97,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 1036,
+        "n_excluded": 19,
+        "pct_items_50_300": 72,
+        "host": "baserange.com"
       }
     },
     {
@@ -186,76 +243,15 @@
       "aesthetic": "SF indie eclectic",
       "platform_guess": "shopify",
       "note": "Also a multi-brand stockist — good source of adjacent small labels.",
-      "verified": {
-        "median_usd": 103.5,
-        "mean_usd": 110,
-        "n_products": 250,
-        "pct_50_300": 90,
-        "host": "lisasaysgah.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "baserange",
-      "name": "Baserange",
-      "domain": "baserange.com",
-      "category": "indie-natural",
-      "aesthetic": "soft minimal",
-      "note": "Organic cotton, silk, bamboo.",
-      "verified": {
-        "median_usd": 110,
-        "mean_usd": 126,
-        "n_products": 250,
-        "pct_50_300": 76,
-        "host": "baserange.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "rouje",
-      "name": "Rouje",
-      "domain": "www.rouje.com",
-      "category": "french",
-      "aesthetic": "Parisian sensual",
-      "verified": {
-        "median_usd": 116,
-        "mean_usd": 116,
-        "n_products": 250,
-        "pct_50_300": 94,
-        "host": "www.rouje.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "naadam",
-      "name": "NAADAM",
-      "domain": "naadam.co",
-      "category": "knitwear",
-      "aesthetic": "accessible cashmere",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 126,
-        "mean_usd": 137,
-        "n_products": 250,
-        "pct_50_300": 91,
-        "host": "naadam.co",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "triarchy",
-      "name": "Triarchy",
-      "domain": "triarchy.com",
-      "category": "denim",
-      "aesthetic": "sustainable denim",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 142.5,
-        "mean_usd": 200,
-        "n_products": 29,
-        "pct_50_300": 83,
-        "host": "triarchy.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 117,
+        "median_usd": 108,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 267,
+        "n_excluded": 2,
+        "pct_items_50_300": 89,
+        "host": "lisasaysgah.com"
       }
     },
     {
@@ -264,44 +260,15 @@
       "domain": "fahertybrand.com",
       "category": "chain",
       "aesthetic": "",
-      "verified": {
-        "median_usd": 148,
-        "mean_usd": 143,
-        "n_products": 250,
-        "pct_50_300": 98,
-        "host": "fahertybrand.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "velvet",
-      "name": "Velvet by Graham & Spencer",
-      "domain": "velvet-tees.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "median_usd": 149.5,
-        "mean_usd": 148,
-        "n_products": 250,
-        "pct_50_300": 98,
-        "host": "velvet-tees.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "caron-callahan",
-      "name": "Caron Callahan",
-      "domain": "caroncallahan.com",
-      "category": "indie-natural",
-      "aesthetic": "NY relaxed",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 150,
-        "mean_usd": 163,
-        "n_products": 111,
-        "pct_50_300": 92,
-        "host": "caroncallahan.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 125,
+        "median_usd": 114,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 2158,
+        "n_excluded": 28,
+        "pct_items_50_300": 93,
+        "host": "fahertybrand.com"
       }
     },
     {
@@ -311,13 +278,100 @@
       "category": "indie-print",
       "aesthetic": "Australian romantic",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 154,
-        "mean_usd": 147,
-        "n_products": 250,
-        "pct_50_300": 96,
-        "host": "withjean.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 126,
+        "median_usd": 134,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 392,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "withjean.com"
+      }
+    },
+    {
+      "slug": "whimsy-row",
+      "name": "Whimsy + Row",
+      "domain": "whimsyandrow.com",
+      "category": "indie-natural",
+      "aesthetic": "LA slow",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 130,
+        "median_usd": 158,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 14,
+        "n_excluded": 20,
+        "pct_items_50_300": 86,
+        "host": "whimsyandrow.com"
+      }
+    },
+    {
+      "slug": "nation-ltd",
+      "name": "Nation LTD",
+      "domain": "nationltd.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 131,
+        "median_usd": 124,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1804,
+        "n_excluded": 1,
+        "pct_items_50_300": 91,
+        "host": "nationltd.com"
+      }
+    },
+    {
+      "slug": "naadam",
+      "name": "NAADAM",
+      "domain": "naadam.co",
+      "category": "knitwear",
+      "aesthetic": "accessible cashmere",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 131,
+        "median_usd": 112,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 443,
+        "n_excluded": 4,
+        "pct_items_50_300": 90,
+        "host": "naadam.co"
+      }
+    },
+    {
+      "slug": "rouje",
+      "name": "Rouje",
+      "domain": "www.rouje.com",
+      "category": "french",
+      "aesthetic": "Parisian sensual",
+      "price": {
+        "avg_usd": 135,
+        "median_usd": 121,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 1167,
+        "n_excluded": 0,
+        "pct_items_50_300": 83,
+        "host": "www.rouje.com"
+      }
+    },
+    {
+      "slug": "stine-goya",
+      "name": "Stine Goya",
+      "domain": "stinegoya.com",
+      "price": {
+        "avg_usd": 158,
+        "median_usd": 123,
+        "currency": "DKK",
+        "fx_applied": 0.145,
+        "n_products": 522,
+        "n_excluded": 1,
+        "pct_items_50_300": 8,
+        "host": "stinegoya.com"
       }
     },
     {
@@ -326,76 +380,33 @@
       "domain": "alexmill.com",
       "category": "chain",
       "aesthetic": "",
-      "verified": {
-        "median_usd": 168,
-        "mean_usd": 171,
-        "n_products": 250,
-        "pct_50_300": 82,
-        "host": "alexmill.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 164,
+        "median_usd": 165,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 662,
+        "n_excluded": 4,
+        "pct_items_50_300": 78,
+        "host": "alexmill.com"
       }
     },
     {
-      "slug": "paloma-wool",
-      "name": "Paloma Wool",
-      "domain": "palomawool.com",
-      "category": "indie-print",
-      "aesthetic": "artful Barcelona",
+      "slug": "caron-callahan",
+      "name": "Caron Callahan",
+      "domain": "caroncallahan.com",
+      "category": "indie-natural",
+      "aesthetic": "NY relaxed",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 190,
-        "mean_usd": 263,
-        "n_products": 213,
-        "pct_50_300": 80,
-        "host": "palomawool.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "rachel-antonoff",
-      "name": "Rachel Antonoff",
-      "domain": "rachelantonoff.com",
-      "category": "romantic",
-      "aesthetic": "playful illustrated",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 198,
-        "mean_usd": 210,
-        "n_products": 240,
-        "pct_50_300": 82,
-        "host": "rachelantonoff.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "farm-rio",
-      "name": "FARM Rio",
-      "domain": "www.farmrio.com",
-      "category": "indie-print",
-      "aesthetic": "Brazilian print",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 198,
-        "mean_usd": 216,
-        "n_products": 250,
-        "pct_50_300": 87,
-        "host": "www.farmrio.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "cuyana",
-      "name": "Cuyana",
-      "domain": "www.cuyana.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "median_usd": 198,
-        "mean_usd": 237,
-        "n_products": 250,
-        "pct_50_300": 67,
-        "host": "www.cuyana.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 166,
+        "median_usd": 150,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 109,
+        "n_excluded": 2,
+        "pct_items_50_300": 93,
+        "host": "caroncallahan.com"
       }
     },
     {
@@ -405,13 +416,86 @@
       "category": "romantic",
       "aesthetic": "artisan bohemian",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 211,
-        "mean_usd": 210,
-        "n_products": 250,
-        "pct_50_300": 88,
-        "host": "cleobella.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 188,
+        "median_usd": 178,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 372,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "cleobella.com"
+      }
+    },
+    {
+      "slug": "farm-rio",
+      "name": "FARM Rio",
+      "domain": "www.farmrio.com",
+      "category": "indie-print",
+      "aesthetic": "Brazilian print",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 198,
+        "median_usd": 180,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1072,
+        "n_excluded": 10,
+        "pct_items_50_300": 86,
+        "host": "www.farmrio.com"
+      }
+    },
+    {
+      "slug": "triarchy",
+      "name": "Triarchy",
+      "domain": "triarchy.com",
+      "category": "denim",
+      "aesthetic": "sustainable denim",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 205,
+        "median_usd": 184,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 28,
+        "n_excluded": 1,
+        "pct_items_50_300": 82,
+        "host": "triarchy.com"
+      }
+    },
+    {
+      "slug": "cuyana",
+      "name": "Cuyana",
+      "domain": "www.cuyana.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 205,
+        "median_usd": 168,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 898,
+        "n_excluded": 14,
+        "pct_items_50_300": 72,
+        "host": "www.cuyana.com"
+      }
+    },
+    {
+      "slug": "rachel-antonoff",
+      "name": "Rachel Antonoff",
+      "domain": "rachelantonoff.com",
+      "category": "romantic",
+      "aesthetic": "playful illustrated",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 212,
+        "median_usd": 198,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 238,
+        "n_excluded": 2,
+        "pct_items_50_300": 82,
+        "host": "rachelantonoff.com"
       }
     },
     {
@@ -421,60 +505,15 @@
       "category": "romantic",
       "aesthetic": "block-print caftan",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 238,
-        "mean_usd": 226,
-        "n_products": 250,
-        "pct_50_300": 72,
-        "host": "mirthcaftans.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "xirena",
-      "name": "Xirena",
-      "domain": "xirena.com",
-      "category": "romantic",
-      "aesthetic": "soft cotton/silk",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 245,
-        "mean_usd": 256,
-        "n_products": 250,
-        "pct_50_300": 82,
-        "host": "xirena.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "musier",
-      "name": "Musier Paris",
-      "domain": "musier-paris.com",
-      "category": "french",
-      "aesthetic": "Parisian modern",
-      "verified": {
-        "median_usd": 248,
-        "mean_usd": 243,
-        "n_products": 46,
-        "pct_50_300": 76,
-        "host": "musier-paris.com",
-        "source": "products.json"
-      }
-    },
-    {
-      "slug": "loeffler-randall",
-      "name": "Loeffler Randall",
-      "domain": "www.loefflerrandall.com",
-      "category": "footwear",
-      "aesthetic": "party shoe",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 250,
-        "mean_usd": 264,
-        "n_products": 250,
-        "pct_50_300": 69,
-        "host": "www.loefflerrandall.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 223,
+        "median_usd": 228,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 486,
+        "n_excluded": 3,
+        "pct_items_50_300": 76,
+        "host": "mirthcaftans.com"
       }
     },
     {
@@ -484,13 +523,15 @@
       "category": "denim",
       "aesthetic": "LA vintage denim",
       "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 253,
-        "mean_usd": 241,
-        "n_products": 250,
-        "pct_50_300": 88,
-        "host": "agolde.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 229,
+        "median_usd": 238,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 682,
+        "n_excluded": 3,
+        "pct_items_50_300": 92,
+        "host": "agolde.com"
       }
     },
     {
@@ -501,13 +542,33 @@
       "aesthetic": "quiet natural fiber",
       "platform_guess": "shopify",
       "note": "Silk/hemp/cotton, small-batch — near-ideal fabric profile.",
-      "verified": {
+      "price": {
+        "avg_usd": 231,
         "median_usd": 258,
-        "mean_usd": 230,
-        "n_products": 203,
-        "pct_50_300": 86,
-        "host": "ozmaofcalifornia.com",
-        "source": "products.json"
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 202,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "ozmaofcalifornia.com"
+      }
+    },
+    {
+      "slug": "xirena",
+      "name": "Xirena",
+      "domain": "xirena.com",
+      "category": "romantic",
+      "aesthetic": "soft cotton/silk",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 236,
+        "median_usd": 225,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 808,
+        "n_excluded": 1,
+        "pct_items_50_300": 86,
+        "host": "xirena.com"
       }
     },
     {
@@ -518,14 +579,123 @@
       "aesthetic": "vintage prairie",
       "platform_guess": "shopify",
       "note": "Deadstock and regenerative cotton — strong fabric story.",
-      "verified": {
-        "median_usd": 268,
-        "mean_usd": 262,
-        "n_products": 250,
-        "pct_50_300": 52,
-        "host": "christydawn.com",
-        "source": "products.json"
+      "price": {
+        "avg_usd": 244,
+        "median_usd": 228,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 399,
+        "n_excluded": 50,
+        "pct_items_50_300": 59,
+        "host": "christydawn.com"
       }
+    },
+    {
+      "slug": "paloma-wool",
+      "name": "Paloma Wool",
+      "domain": "palomawool.com",
+      "category": "indie-print",
+      "aesthetic": "artful Barcelona",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 258,
+        "median_usd": 205,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 816,
+        "n_excluded": 1,
+        "pct_items_50_300": 81,
+        "host": "palomawool.com"
+      }
+    },
+    {
+      "slug": "loeffler-randall",
+      "name": "Loeffler Randall",
+      "domain": "www.loefflerrandall.com",
+      "category": "footwear",
+      "aesthetic": "party shoe",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 263,
+        "median_usd": 250,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 817,
+        "n_excluded": 3,
+        "pct_items_50_300": 67,
+        "host": "www.loefflerrandall.com"
+      }
+    },
+    {
+      "slug": "musier",
+      "name": "Musier Paris",
+      "domain": "musier-paris.com",
+      "category": "french",
+      "aesthetic": "Parisian modern",
+      "price": {
+        "avg_usd": 265,
+        "median_usd": 268,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 46,
+        "n_excluded": 0,
+        "pct_items_50_300": 76,
+        "host": "musier-paris.com"
+      }
+    },
+    {
+      "slug": "freda-salvador",
+      "name": "Freda Salvador",
+      "domain": "fredasalvador.com",
+      "category": "footwear",
+      "aesthetic": "SF handcrafted",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 294,
+        "median_usd": 261,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 479,
+        "n_excluded": 1,
+        "pct_items_50_300": 52,
+        "host": "fredasalvador.com"
+      }
+    }
+  ],
+  "backlog": [
+    {
+      "slug": "toteme",
+      "name": "Totême",
+      "domain": "toteme-studio.com",
+      "price": {
+        "avg_usd": 78,
+        "median_usd": 59,
+        "currency": "SEK",
+        "fx_applied": 0.095,
+        "n_products": 1312,
+        "n_excluded": 0,
+        "pct_items_50_300": 10,
+        "host": "toteme-studio.com",
+        "warning": "FX-converted figure looks implausibly low for this brand — verify manually before trusting."
+      },
+      "hold_reason": "price figure suspect (see warning)"
+    },
+    {
+      "slug": "staud",
+      "name": "STAUD",
+      "domain": "staud.clothing",
+      "platform_guess": "shopify",
+      "price": {
+        "avg_usd": 335,
+        "median_usd": 295,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 1916,
+        "n_excluded": 139,
+        "pct_items_50_300": 54,
+        "host": "staud.clothing"
+      },
+      "hold_reason": "measured average $335 — above the $50–300 band"
     },
     {
       "slug": "doen",
@@ -534,17 +704,205 @@
       "category": "romantic",
       "aesthetic": "California romantic",
       "platform_guess": "shopify",
-      "verified": {
+      "price": {
+        "avg_usd": 352,
         "median_usd": 298,
-        "mean_usd": 319,
-        "n_products": 250,
-        "pct_50_300": 56,
-        "host": "shopdoen.com",
-        "source": "products.json"
-      }
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 630,
+        "n_excluded": 3,
+        "pct_items_50_300": 58,
+        "host": "shopdoen.com"
+      },
+      "hold_reason": "measured average $352 — above the $50–300 band"
+    },
+    {
+      "slug": "rachel-comey",
+      "name": "Rachel Comey",
+      "domain": "www.rachelcomey.com",
+      "price": {
+        "avg_usd": 606,
+        "median_usd": 545,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 679,
+        "n_excluded": 3,
+        "pct_items_50_300": 17,
+        "host": "www.rachelcomey.com"
+      },
+      "hold_reason": "measured average $606 — above the $50–300 band"
+    },
+    {
+      "slug": "extreme-cashmere",
+      "name": "Extreme Cashmere",
+      "domain": "extreme-cashmere.com",
+      "price": {
+        "avg_usd": 647,
+        "median_usd": 540,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 119,
+        "n_excluded": 0,
+        "pct_items_50_300": 18,
+        "host": "extreme-cashmere.com"
+      },
+      "hold_reason": "measured average $647 — above the $50–300 band"
+    },
+    {
+      "slug": "jenni-kayne",
+      "name": "Jenni Kayne",
+      "domain": "www.jennikayne.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "avg_usd": 674,
+        "median_usd": 345,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 637,
+        "n_excluded": 420,
+        "pct_items_50_300": 38,
+        "host": "www.jennikayne.com"
+      },
+      "hold_reason": "measured average $674 — above the $50–300 band"
+    },
+    {
+      "slug": "simone-rocha",
+      "name": "Simone Rocha",
+      "domain": "www.simonerocha.com",
+      "price": {
+        "avg_usd": 707,
+        "median_usd": 603,
+        "currency": "GBP",
+        "fx_applied": 1.27,
+        "n_products": 280,
+        "n_excluded": 0,
+        "pct_items_50_300": 29,
+        "host": "www.simonerocha.com"
+      },
+      "hold_reason": "measured average $707 — above the $50–300 band"
+    },
+    {
+      "slug": "nili-lotan",
+      "name": "Nili Lotan",
+      "domain": "www.nililotan.com",
+      "price": {
+        "avg_usd": 751,
+        "median_usd": 490,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 816,
+        "n_excluded": 2,
+        "pct_items_50_300": 15,
+        "host": "www.nililotan.com"
+      },
+      "hold_reason": "measured average $751 — above the $50–300 band"
+    },
+    {
+      "slug": "ulla-johnson",
+      "name": "Ulla Johnson",
+      "domain": "www.ullajohnson.com",
+      "price": {
+        "avg_usd": 773,
+        "median_usd": 620,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 753,
+        "n_excluded": 17,
+        "pct_items_50_300": 10,
+        "host": "www.ullajohnson.com"
+      },
+      "hold_reason": "measured average $773 — above the $50–300 band"
+    },
+    {
+      "slug": "lemaire",
+      "name": "Lemaire",
+      "domain": "www.lemaire.fr",
+      "price": {
+        "avg_usd": 797,
+        "median_usd": 637,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 782,
+        "n_excluded": 23,
+        "pct_items_50_300": 18,
+        "host": "www.lemaire.fr"
+      },
+      "hold_reason": "measured average $797 — above the $50–300 band"
+    },
+    {
+      "slug": "cecilie-bahnsen",
+      "name": "Cecilie Bahnsen",
+      "domain": "ceciliebahnsen.com",
+      "price": {
+        "avg_usd": 1688,
+        "median_usd": 1188,
+        "currency": "EUR",
+        "fx_applied": 1.08,
+        "n_products": 548,
+        "n_excluded": 1,
+        "pct_items_50_300": 2,
+        "host": "ceciliebahnsen.com"
+      },
+      "hold_reason": "measured average $1688 — above the $50–300 band"
+    },
+    {
+      "slug": "khaite",
+      "name": "Khaite",
+      "domain": "khaite.com",
+      "price": {
+        "avg_usd": 2999,
+        "median_usd": 1580,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 870,
+        "n_excluded": 1,
+        "pct_items_50_300": 0,
+        "host": "khaite.com"
+      },
+      "hold_reason": "measured average $2999 — above the $50–300 band"
+    },
+    {
+      "slug": "the-row",
+      "name": "The Row",
+      "domain": "www.therow.com",
+      "price": {
+        "avg_usd": 47383,
+        "median_usd": 4400,
+        "currency": "USD",
+        "fx_applied": 1.0,
+        "n_products": 2523,
+        "n_excluded": 0,
+        "pct_items_50_300": 0,
+        "host": "www.therow.com"
+      },
+      "hold_reason": "measured average $47383 — above the $50–300 band"
     }
   ],
-  "backlog": [
+  "unverified": [
+    {
+      "slug": "other-stories",
+      "name": "& Other Stories",
+      "domain": "www.stories.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "amour-vert",
+      "name": "Amour Vert",
+      "domain": "amourvert.com",
+      "category": "indie-natural",
+      "aesthetic": "SF sustainable",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
     {
       "slug": "anthropologie",
       "name": "Anthropologie",
@@ -552,24 +910,182 @@
       "category": "reference",
       "aesthetic": "eclectic bohemian",
       "note": "The reference point. In-house labels (Maeve, Pilcro, Daily Practice) are the target aesthetic.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "the-great",
-      "name": "The Great",
-      "domain": "thegreat.com",
-      "category": "romantic",
-      "aesthetic": "Americana nostalgic",
-      "note": "Domain did not resolve on spot-check — needs verification before crawl.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "slug": "aritzia",
+      "name": "Aritzia",
+      "domain": "www.aritzia.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "arket",
+      "name": "Arket",
+      "domain": "www.arket.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "back-beat",
+      "name": "Back Beat Co.",
+      "domain": "backbeatco.com",
+      "category": "indie-natural",
+      "aesthetic": "hemp retro casual",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "boden",
+      "name": "Boden",
+      "domain": "www.bodenusa.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "cos",
+      "name": "COS",
+      "domain": "www.cos.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "free-people",
+      "name": "Free People",
+      "domain": "www.freepeople.com",
+      "category": "casual",
+      "aesthetic": "festival bohemian",
+      "note": "Anthropologie's sister brand — same parent, adjacent aesthetic. Fabric quality is mixed; let the gate decide.",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "ganni",
+      "name": "GANNI",
+      "domain": "www.ganni.com",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "hackwith",
+      "name": "Hackwith Design House",
+      "domain": "hackwithdesignhouse.com",
+      "category": "indie-natural",
+      "aesthetic": "Minnesota made-to-order",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "ilana-kohn",
+      "name": "Ilana Kohn",
+      "domain": "ilanakohn.com",
+      "category": "indie-natural",
+      "aesthetic": "artful utility",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "jcrew",
+      "name": "J.Crew",
+      "domain": "www.jcrew.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "jacquemus",
+      "name": "Jacquemus",
+      "domain": "www.jacquemus.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "kotn",
+      "name": "Kotn",
+      "domain": "kotn.com",
+      "category": "indie-natural",
+      "aesthetic": "Egyptian cotton basics",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "lisa-yang",
+      "name": "Lisa Yang",
+      "domain": "lisayang.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "loup",
+      "name": "Loup",
+      "domain": "loupnyc.com",
+      "category": "indie-natural",
+      "aesthetic": "NY small-batch",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "madewell",
+      "name": "Madewell",
+      "domain": "www.madewell.com",
+      "category": "casual",
+      "aesthetic": "American cotton casual",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "marge-sherwood",
+      "name": "Marge Sherwood",
+      "domain": "margesherwood.com",
+      "category": "accessories",
+      "aesthetic": "Korean soft leather",
+      "platform_guess": "shopify",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
       "slug": "mille",
@@ -579,136 +1095,50 @@
       "aesthetic": "folk romantic",
       "platform_guess": "shopify",
       "note": "Domain verified: mille.com /products.json returns 200.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "ilana-kohn",
-      "name": "Ilana Kohn",
-      "domain": "ilanakohn.com",
-      "category": "indie-natural",
-      "aesthetic": "artful utility",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "slug": "nordstrom",
+      "name": "Nordstrom",
+      "domain": "www.nordstrom.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "two-days-off",
-      "name": "Two Days Off",
-      "domain": "twodaysoff.com",
-      "category": "indie-natural",
-      "aesthetic": "LA linen",
-      "note": "Domain did not resolve on spot-check — needs verification before crawl.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "slug": "pact",
+      "name": "Pact",
+      "domain": "wearpact.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "loup",
-      "name": "Loup",
-      "domain": "loupnyc.com",
-      "category": "indie-natural",
-      "aesthetic": "NY small-batch",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "slug": "quince",
+      "name": "Quince",
+      "domain": "www.onequince.com",
+      "category": "chain",
+      "aesthetic": "",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "hackwith",
-      "name": "Hackwith Design House",
-      "domain": "hackwithdesignhouse.com",
-      "category": "indie-natural",
-      "aesthetic": "Minnesota made-to-order",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "whimsy-row",
-      "name": "Whimsy + Row",
-      "domain": "whimsyandrow.com",
-      "category": "indie-natural",
-      "aesthetic": "LA slow",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 41,
-        "mean_usd": 111,
-        "n_products": 34,
-        "pct_50_300": 35,
-        "host": "whimsyandrow.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $41 — below the $50–300 band"
-    },
-    {
-      "slug": "amour-vert",
-      "name": "Amour Vert",
-      "domain": "amourvert.com",
-      "category": "indie-natural",
-      "aesthetic": "SF sustainable",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "back-beat",
-      "name": "Back Beat Co.",
-      "domain": "backbeatco.com",
-      "category": "indie-natural",
-      "aesthetic": "hemp retro casual",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "kotn",
-      "name": "Kotn",
-      "domain": "kotn.com",
-      "category": "indie-natural",
-      "aesthetic": "Egyptian cotton basics",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "nooworks",
-      "name": "Nooworks",
-      "domain": "nooworks.com",
-      "category": "indie-print",
-      "aesthetic": "SF illustrated print",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 45,
-        "mean_usd": 67,
-        "n_products": 250,
-        "pct_50_300": 48,
-        "host": "nooworks.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $45 — below the $50–300 band"
+      "slug": "reformation",
+      "name": "Reformation",
+      "domain": "www.thereformation.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
       "slug": "realisation-par",
@@ -717,11 +1147,19 @@
       "category": "indie-print",
       "aesthetic": "slip-dress cool",
       "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "ssense",
+      "name": "SSENSE",
+      "domain": "www.ssense.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
       "slug": "sezane",
@@ -730,11 +1168,34 @@
       "category": "french",
       "aesthetic": "Parisian classic",
       "note": "Larger than the rest, but the price band and fabric quality fit exactly.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "the-great",
+      "name": "The Great",
+      "domain": "thegreat.com",
+      "category": "romantic",
+      "aesthetic": "Americana nostalgic",
+      "note": "Domain did not resolve on spot-check — needs verification before crawl.",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
+    },
+    {
+      "slug": "two-days-off",
+      "name": "Two Days Off",
+      "domain": "twodaysoff.com",
+      "category": "indie-natural",
+      "aesthetic": "LA linen",
+      "note": "Domain did not resolve on spot-check — needs verification before crawl.",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
       "slug": "vetta",
@@ -743,422 +1204,28 @@
       "category": "casual",
       "aesthetic": "capsule wardrobe",
       "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "madewell",
-      "name": "Madewell",
-      "domain": "www.madewell.com",
-      "category": "casual",
-      "aesthetic": "American cotton casual",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "free-people",
-      "name": "Free People",
-      "domain": "www.freepeople.com",
-      "category": "casual",
-      "aesthetic": "festival bohemian",
-      "note": "Anthropologie's sister brand — same parent, adjacent aesthetic. Fabric quality is mixed; let the gate decide.",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "freda-salvador",
-      "name": "Freda Salvador",
-      "domain": "fredasalvador.com",
-      "category": "footwear",
-      "aesthetic": "SF handcrafted",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 341.5,
-        "mean_usd": 323,
-        "n_products": 250,
-        "pct_50_300": 46,
-        "host": "fredasalvador.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $342 — above the $50–300 band"
-    },
-    {
-      "slug": "marge-sherwood",
-      "name": "Marge Sherwood",
-      "domain": "margesherwood.com",
-      "category": "accessories",
-      "aesthetic": "Korean soft leather",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "ganni",
-      "name": "GANNI",
-      "domain": "www.ganni.com",
-      "platform_guess": "shopify",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "ulla-johnson",
-      "name": "Ulla Johnson",
-      "domain": "www.ullajohnson.com",
-      "verified": {
-        "median_usd": 590,
-        "mean_usd": 764,
-        "n_products": 250,
-        "pct_50_300": 12,
-        "host": "www.ullajohnson.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $590 — above the $50–300 band"
-    },
-    {
-      "slug": "reformation",
-      "name": "Reformation",
-      "domain": "www.thereformation.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "staud",
-      "name": "STAUD",
-      "domain": "staud.clothing",
-      "platform_guess": "shopify",
-      "verified": {
-        "median_usd": 395,
-        "mean_usd": 446,
-        "n_products": 250,
-        "pct_50_300": 28,
-        "host": "staud.clothing",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $395 — above the $50–300 band"
-    },
-    {
-      "slug": "toteme",
-      "name": "Totême",
-      "domain": "toteme-studio.com",
-      "verified": {
-        "median_usd": 705,
-        "mean_usd": 882,
-        "n_products": 250,
-        "pct_50_300": 8,
-        "host": "toteme-studio.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $705 — above the $50–300 band"
-    },
-    {
-      "slug": "khaite",
-      "name": "Khaite",
-      "domain": "khaite.com",
-      "verified": {
-        "median_usd": 2150,
-        "mean_usd": 3508,
-        "n_products": 250,
-        "pct_50_300": 0,
-        "host": "khaite.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $2150 — above the $50–300 band"
-    },
-    {
-      "slug": "the-row",
-      "name": "The Row",
-      "domain": "www.therow.com",
-      "verified": {
-        "median_usd": 1495,
-        "mean_usd": 2005,
-        "n_products": 250,
-        "pct_50_300": 0,
-        "host": "www.therow.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $1495 — above the $50–300 band"
-    },
-    {
-      "slug": "lemaire",
-      "name": "Lemaire",
-      "domain": "www.lemaire.fr",
-      "verified": {
-        "median_usd": 650,
-        "mean_usd": 746,
-        "n_products": 250,
-        "pct_50_300": 15,
-        "host": "www.lemaire.fr",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $650 — above the $50–300 band"
-    },
-    {
-      "slug": "jacquemus",
-      "name": "Jacquemus",
-      "domain": "www.jacquemus.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "simone-rocha",
-      "name": "Simone Rocha",
-      "domain": "www.simonerocha.com",
-      "verified": {
-        "median_usd": 495,
-        "mean_usd": 577,
-        "n_products": 250,
-        "pct_50_300": 27,
-        "host": "www.simonerocha.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $495 — above the $50–300 band"
-    },
-    {
-      "slug": "cecilie-bahnsen",
-      "name": "Cecilie Bahnsen",
-      "domain": "ceciliebahnsen.com",
-      "verified": {
-        "median_usd": 1105,
-        "mean_usd": 1490,
-        "n_products": 250,
-        "pct_50_300": 3,
-        "host": "ceciliebahnsen.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $1105 — above the $50–300 band"
-    },
-    {
-      "slug": "zimmermann",
-      "name": "Zimmermann",
-      "domain": "www.zimmermann.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "nili-lotan",
-      "name": "Nili Lotan",
-      "domain": "www.nililotan.com",
-      "verified": {
-        "median_usd": 650,
-        "mean_usd": 901,
-        "n_products": 250,
-        "pct_50_300": 10,
-        "host": "www.nililotan.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $650 — above the $50–300 band"
-    },
-    {
-      "slug": "rachel-comey",
-      "name": "Rachel Comey",
-      "domain": "www.rachelcomey.com",
-      "verified": {
-        "median_usd": 595,
-        "mean_usd": 649,
-        "n_products": 250,
-        "pct_50_300": 13,
-        "host": "www.rachelcomey.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $595 — above the $50–300 band"
-    },
-    {
-      "slug": "extreme-cashmere",
-      "name": "Extreme Cashmere",
-      "domain": "extreme-cashmere.com",
-      "verified": {
-        "median_usd": 500,
-        "mean_usd": 599,
-        "n_products": 119,
-        "pct_50_300": 18,
-        "host": "extreme-cashmere.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $500 — above the $50–300 band"
-    },
-    {
-      "slug": "lisa-yang",
-      "name": "Lisa Yang",
-      "domain": "lisayang.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "stine-goya",
-      "name": "Stine Goya",
-      "domain": "stinegoya.com",
-      "verified": {
-        "median_usd": 1399,
-        "mean_usd": 1434,
-        "n_products": 250,
-        "pct_50_300": 10,
-        "host": "stinegoya.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $1399 — above the $50–300 band"
-    },
-    {
-      "slug": "cos",
-      "name": "COS",
-      "domain": "www.cos.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "arket",
-      "name": "Arket",
-      "domain": "www.arket.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "aritzia",
-      "name": "Aritzia",
-      "domain": "www.aritzia.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
       "slug": "zara",
       "name": "Zara",
       "domain": "www.zara.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     },
     {
-      "slug": "nordstrom",
-      "name": "Nordstrom",
-      "domain": "www.nordstrom.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "ssense",
-      "name": "SSENSE",
-      "domain": "www.ssense.com",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "other-stories",
-      "name": "& Other Stories",
-      "domain": "www.stories.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "jcrew",
-      "name": "J.Crew",
-      "domain": "www.jcrew.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "boden",
-      "name": "Boden",
-      "domain": "www.bodenusa.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "pact",
-      "name": "Pact",
-      "domain": "wearpact.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "quince",
-      "name": "Quince",
-      "domain": "www.onequince.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "status": "no-products-json",
-        "note": "needs tier-2 JSON-LD crawl to price-verify"
-      },
-      "hold_reason": "price unverified — no /products.json; needs tier-2 crawl"
-    },
-    {
-      "slug": "jenni-kayne",
-      "name": "Jenni Kayne",
-      "domain": "www.jennikayne.com",
-      "category": "chain",
-      "aesthetic": "",
-      "verified": {
-        "median_usd": 345,
-        "mean_usd": 781,
-        "n_products": 243,
-        "pct_50_300": 41,
-        "host": "www.jennikayne.com",
-        "source": "products.json"
-      },
-      "hold_reason": "measured median $345 — above the $50–300 band"
+      "slug": "zimmermann",
+      "name": "Zimmermann",
+      "domain": "www.zimmermann.com",
+      "price": {
+        "status": "unverified",
+        "reason": "no /products.json — needs tier-2 JSON-LD crawl"
+      }
     }
   ]
 }
