@@ -97,10 +97,14 @@ function naturalFiberRatio(text) {
     }
     if (total > 0) return Math.min(1, nat / total);
   }
-  const hasNat = NATURAL.test(text), hasSyn = SYNTHETIC.test(text);
-  if (!hasNat && !hasSyn) return null;
-  return hasNat && !hasSyn ? 1 : hasNat ? 0.5 : 0;
+  // Without explicit percentages we can't distinguish "100% cotton" from
+  // "cotton-blend". Returning a confident 1.0 here inflated the whole index,
+  // so weak evidence now reports null and the rollup ignores it.
+  return null;
 }
+
+const NON_APPAREL = /(sunglass|eyewear|jewel|candle|mug|book|pet|tabletop|home|decor|gift.?card|fragrance|skincare)/i;
+const KIDS = /\b(kids?|girls?|boys?|baby|toddler|children)\b/i;
 
 export function makeItem({
   brand, externalId, title, descriptionHtml, productType,
@@ -112,7 +116,7 @@ export function makeItem({
 
   const signalText = [title, productType, ...tags].join(' ');
   const bodyText = stripHtml(descriptionHtml);
-  const fiberText = `${signalText} ${bodyText.slice(0, 600)}`;
+  const fiberText = `${signalText} ${bodyText}`;
 
   // Average across variants, not minimum — a size run priced identically is
   // unaffected, but bundles and multi-size products no longer read as cheap.
@@ -147,6 +151,11 @@ export function makeItem({
     canonical_description: null,
     attributes: null,
     embedding: null,
+
+    // Excluded from brand-level quality rollups: accessories and kidswear
+    // are not what the fabric and price signals are meant to describe.
+    apparel: !NON_APPAREL.test(`${productType || ''} ${title || ''}`)
+      && !KIDS.test([productType || '', ...tags].join(' ')),
 
     crawled_at: new Date().toISOString(),
   };

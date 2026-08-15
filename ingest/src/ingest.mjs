@@ -86,8 +86,10 @@ async function main() {
 
   // Per-brand rollups: price and natural-fiber ratio, the two quality signals.
   const report = results.map((r) => {
-    const prices = r.items.map((i) => i.price_avg).filter((p) => p != null);
-    const fibers = r.items.map((i) => i.natural_fiber_ratio).filter((f) => f != null);
+    // Roll up quality signals over apparel only.
+    const core = r.items.filter((i) => i.apparel);
+    const prices = core.map((i) => i.price_avg).filter((p) => p != null);
+    const fibers = core.map((i) => i.natural_fiber_ratio).filter((f) => f != null);
     return {
       slug: r.brand.slug, name: r.brand.name, strategy: r.strategy,
       items: r.items.length, attempts: r.attempts, seconds: +r.seconds.toFixed(1),
@@ -95,7 +97,8 @@ async function main() {
       median_price: prices.length ? +median(prices).toFixed(0) : null,
       currency: r.items[0]?.currency ?? null,
       natural_fiber_median: fibers.length ? +median(fibers).toFixed(2) : null,
-      fiber_coverage: r.items.length ? +(fibers.length / r.items.length).toFixed(2) : 0,
+      fiber_coverage: core.length ? +(fibers.length / core.length).toFixed(2) : 0,
+      apparel_items: core.length,
       pct_with_image: r.items.length ? +(r.items.filter((i) => i.primary_image).length / r.items.length).toFixed(2) : 0,
       pct_categorized: r.items.length ? +(r.items.filter((i) => i.category !== 'unknown').length / r.items.length).toFixed(2) : 0,
     };

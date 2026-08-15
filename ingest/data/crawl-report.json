@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T20:29:37.541Z",
+  "generated_at": "2026-08-15T20:31:08.311Z",
   "args": {
     "brands": null,
     "group": "crawl_ready",
@@ -9,6 +9,42 @@
   },
   "report": [
     {
+      "slug": "nooworks",
+      "name": "Nooworks",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 0.6,
+      "avg_price": 72,
+      "median_price": 55,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.09,
+      "apparel_items": 183,
+      "pct_with_image": 0.98,
+      "pct_categorized": 0.69
+    },
+    {
+      "slug": "everlane",
+      "name": "Everlane",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1,
+      "avg_price": 61,
+      "median_price": 54,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.18,
+      "apparel_items": 200,
+      "pct_with_image": 0.99,
+      "pct_categorized": 0.9
+    },
+    {
       "slug": "frank-and-oak",
       "name": "Frank And Oak",
       "strategy": "shopify",
@@ -16,12 +52,13 @@
       "attempts": [
         "shopify:83 items"
       ],
-      "seconds": 1.1,
+      "seconds": 1.2,
       "avg_price": 68,
       "median_price": 65,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.84,
+      "fiber_coverage": 1,
+      "apparel_items": 83,
       "pct_with_image": 1,
       "pct_categorized": 0.89
     },
@@ -33,31 +70,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.4,
+      "seconds": 1.3,
       "avg_price": 51,
       "median_price": 48,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.38,
+      "fiber_coverage": 0.22,
+      "apparel_items": 200,
       "pct_with_image": 0.96,
       "pct_categorized": 0.55
-    },
-    {
-      "slug": "everlane",
-      "name": "Everlane",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.4,
-      "avg_price": 61,
-      "median_price": 54,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.94,
-      "pct_with_image": 0.99,
-      "pct_categorized": 0.9
     },
     {
       "slug": "colorful-standard",
@@ -67,48 +88,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.6,
-      "avg_price": 40,
-      "median_price": 35,
+      "seconds": 1.5,
+      "avg_price": 49,
+      "median_price": 40,
       "currency": "USD",
-      "natural_fiber_median": 0,
-      "fiber_coverage": 0.96,
+      "natural_fiber_median": 1,
+      "fiber_coverage": 1,
+      "apparel_items": 67,
       "pct_with_image": 1,
       "pct_categorized": 0.95
-    },
-    {
-      "slug": "toteme",
-      "name": "Totême",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.7,
-      "avg_price": 950,
-      "median_price": 750,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.88,
-      "pct_with_image": 1,
-      "pct_categorized": 0.97
-    },
-    {
-      "slug": "nooworks",
-      "name": "Nooworks",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.9,
-      "avg_price": 69,
-      "median_price": 53,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.59,
-      "pct_with_image": 0.98,
-      "pct_categorized": 0.69
     },
     {
       "slug": "marine-layer",
@@ -118,31 +106,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 0.9,
+      "seconds": 0.8,
       "avg_price": 96,
       "median_price": 94,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.04,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.89
-    },
-    {
-      "slug": "harvest-mill",
-      "name": "Harvest & Mill",
-      "strategy": "shopify",
-      "items": 135,
-      "attempts": [
-        "shopify:135 items"
-      ],
-      "seconds": 1.1,
-      "avg_price": 84,
-      "median_price": 76,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.99,
-      "pct_with_image": 1,
-      "pct_categorized": 0.53
     },
     {
       "slug": "tradlands",
@@ -152,48 +124,69 @@
       "attempts": [
         "shopify:43 items"
       ],
-      "seconds": 1.2,
-      "avg_price": 88,
-      "median_price": 100,
+      "seconds": 0.5,
+      "avg_price": 82,
+      "median_price": 81,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.72,
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.03,
+      "apparel_items": 40,
       "pct_with_image": 1,
       "pct_categorized": 0.72
     },
     {
-      "slug": "lacausa",
-      "name": "Lacausa",
+      "slug": "toteme",
+      "name": "Totême",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.2,
-      "avg_price": 92,
-      "median_price": 78,
+      "seconds": 1.8,
+      "avg_price": 1013,
+      "median_price": 780,
       "currency": "USD",
-      "natural_fiber_median": 0.59,
-      "fiber_coverage": 0.98,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 162,
       "pct_with_image": 1,
-      "pct_categorized": 0.86
+      "pct_categorized": 0.97
     },
     {
-      "slug": "wildfang",
-      "name": "Wildfang",
+      "slug": "harvest-mill",
+      "name": "Harvest & Mill",
+      "strategy": "shopify",
+      "items": 135,
+      "attempts": [
+        "shopify:135 items"
+      ],
+      "seconds": 0.7,
+      "avg_price": 83,
+      "median_price": 76,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.99,
+      "apparel_items": 134,
+      "pct_with_image": 1,
+      "pct_categorized": 0.53
+    },
+    {
+      "slug": "outerknown",
+      "name": "Outerknown",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.2,
-      "avg_price": 91,
+      "seconds": 1.1,
+      "avg_price": 98,
       "median_price": 88,
       "currency": "USD",
-      "natural_fiber_median": 0.98,
-      "fiber_coverage": 0.97,
-      "pct_with_image": 1,
-      "pct_categorized": 0.85
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.2,
+      "apparel_items": 195,
+      "pct_with_image": 0.99,
+      "pct_categorized": 0.83
     },
     {
       "slug": "mate-the-label",
@@ -204,30 +197,50 @@
         "shopify:200 items"
       ],
       "seconds": 1.1,
-      "avg_price": 94,
+      "avg_price": 93,
       "median_price": 88,
       "currency": "USD",
       "natural_fiber_median": 0.92,
       "fiber_coverage": 0.99,
+      "apparel_items": 189,
       "pct_with_image": 1,
       "pct_categorized": 0.98
     },
     {
-      "slug": "outerknown",
-      "name": "Outerknown",
+      "slug": "big-bud-press",
+      "name": "Big Bud Press",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.4,
-      "avg_price": 97,
-      "median_price": 88,
+      "seconds": 0.8,
+      "avg_price": 96,
+      "median_price": 72,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.53,
-      "pct_with_image": 0.99,
-      "pct_categorized": 0.83
+      "fiber_coverage": 0.87,
+      "apparel_items": 173,
+      "pct_with_image": 1,
+      "pct_categorized": 0.78
+    },
+    {
+      "slug": "lacausa",
+      "name": "Lacausa",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.5,
+      "avg_price": 92,
+      "median_price": 78,
+      "currency": "USD",
+      "natural_fiber_median": 0.63,
+      "fiber_coverage": 0.97,
+      "apparel_items": 193,
+      "pct_with_image": 1,
+      "pct_categorized": 0.86
     },
     {
       "slug": "toad-co",
@@ -237,14 +250,51 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 0.9,
+      "seconds": 1.1,
       "avg_price": 97,
       "median_price": 95,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.99,
+      "fiber_coverage": 0.07,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.98
+    },
+    {
+      "slug": "wildfang",
+      "name": "Wildfang",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.6,
+      "avg_price": 91,
+      "median_price": 88,
+      "currency": "USD",
+      "natural_fiber_median": 0.98,
+      "fiber_coverage": 0.91,
+      "apparel_items": 198,
+      "pct_with_image": 1,
+      "pct_categorized": 0.85
+    },
+    {
+      "slug": "sundry",
+      "name": "Sundry",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 0.5,
+      "avg_price": 105,
+      "median_price": 98,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.97,
+      "apparel_items": 200,
+      "pct_with_image": 1,
+      "pct_categorized": 0.88
     },
     {
       "slug": "nisolo",
@@ -256,29 +306,13 @@
       ],
       "seconds": 1.1,
       "avg_price": 102,
-      "median_price": 98,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.99,
-      "pct_with_image": 1,
-      "pct_categorized": 0.95
-    },
-    {
-      "slug": "saltwater-luxe",
-      "name": "Saltwater Luxe",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 0.7,
-      "avg_price": 113,
-      "median_price": 108,
+      "median_price": 99,
       "currency": "USD",
       "natural_fiber_median": 0,
-      "fiber_coverage": 0.97,
+      "fiber_coverage": 0.05,
+      "apparel_items": 169,
       "pct_with_image": 1,
-      "pct_categorized": 0.99
+      "pct_categorized": 0.95
     },
     {
       "slug": "z-supply",
@@ -288,65 +322,51 @@
       "attempts": [
         "shopify:30 items"
       ],
-      "seconds": 1.5,
+      "seconds": 1.3,
       "avg_price": 99,
       "median_price": 98,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.3,
+      "fiber_coverage": 0.03,
+      "apparel_items": 30,
       "pct_with_image": 1,
       "pct_categorized": 1
     },
     {
-      "slug": "sundry",
-      "name": "Sundry",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.1,
-      "avg_price": 105,
-      "median_price": 98,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.99,
-      "pct_with_image": 1,
-      "pct_categorized": 0.88
-    },
-    {
-      "slug": "big-bud-press",
-      "name": "Big Bud Press",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.8,
-      "avg_price": 95,
-      "median_price": 68,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.98,
-      "pct_with_image": 1,
-      "pct_categorized": 0.78
-    },
-    {
-      "slug": "with-jean",
-      "name": "With Jéan",
+      "slug": "saltwater-luxe",
+      "name": "Saltwater Luxe",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
       "seconds": 1,
-      "avg_price": 156,
-      "median_price": 156,
+      "avg_price": 116,
+      "median_price": 118,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 1,
+      "apparel_items": 182,
+      "pct_with_image": 1,
+      "pct_categorized": 0.99
+    },
+    {
+      "slug": "velvet",
+      "name": "Velvet by Graham & Spencer",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.3,
+      "avg_price": 150,
+      "median_price": 154,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.04,
-      "pct_with_image": 1,
-      "pct_categorized": 0.9
+      "fiber_coverage": 0.94,
+      "apparel_items": 200,
+      "pct_with_image": 0.99,
+      "pct_categorized": 1
     },
     {
       "slug": "lisa-says-gah",
@@ -357,11 +377,12 @@
         "shopify:200 items"
       ],
       "seconds": 1.1,
-      "avg_price": 108,
-      "median_price": 104,
+      "avg_price": 114,
+      "median_price": 108,
       "currency": "USD",
       "natural_fiber_median": 0.95,
-      "fiber_coverage": 0.92,
+      "fiber_coverage": 0.95,
+      "apparel_items": 183,
       "pct_with_image": 1,
       "pct_categorized": 0.83
     },
@@ -373,48 +394,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.3,
+      "seconds": 1.7,
       "avg_price": 132,
       "median_price": 110,
       "currency": "USD",
       "natural_fiber_median": 0.93,
       "fiber_coverage": 1,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.85
-    },
-    {
-      "slug": "jungmaven",
-      "name": "Jungmaven",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 2.7,
-      "avg_price": 109,
-      "median_price": 79,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.59,
-      "pct_with_image": 1,
-      "pct_categorized": 0.92
-    },
-    {
-      "slug": "velvet",
-      "name": "Velvet by Graham & Spencer",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.6,
-      "avg_price": 150,
-      "median_price": 154,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.97,
-      "pct_with_image": 0.99,
-      "pct_categorized": 1
     },
     {
       "slug": "whimsy-row",
@@ -424,14 +412,51 @@
       "attempts": [
         "shopify:34 items"
       ],
-      "seconds": 0.7,
+      "seconds": 0.9,
       "avg_price": 111,
       "median_price": 41,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.44,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 34,
       "pct_with_image": 1,
       "pct_categorized": 0.85
+    },
+    {
+      "slug": "with-jean",
+      "name": "With Jéan",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.3,
+      "avg_price": 156,
+      "median_price": 156,
+      "currency": "USD",
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 199,
+      "pct_with_image": 1,
+      "pct_categorized": 0.9
+    },
+    {
+      "slug": "jungmaven",
+      "name": "Jungmaven",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 3,
+      "avg_price": 109,
+      "median_price": 79,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.12,
+      "apparel_items": 200,
+      "pct_with_image": 1,
+      "pct_categorized": 0.92
     },
     {
       "slug": "faherty",
@@ -441,31 +466,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 2.4,
+      "seconds": 2.2,
       "avg_price": 145,
       "median_price": 163,
       "currency": "USD",
-      "natural_fiber_median": 0.99,
+      "natural_fiber_median": 0.83,
       "fiber_coverage": 0.99,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.93
-    },
-    {
-      "slug": "caron-callahan",
-      "name": "Caron Callahan",
-      "strategy": "shopify",
-      "items": 111,
-      "attempts": [
-        "shopify:111 items"
-      ],
-      "seconds": 0.6,
-      "avg_price": 166,
-      "median_price": 150,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.56,
-      "pct_with_image": 1,
-      "pct_categorized": 0.92
     },
     {
       "slug": "naadam",
@@ -475,14 +484,33 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.9,
-      "avg_price": 127,
+      "seconds": 1.6,
+      "avg_price": 128,
       "median_price": 119,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.97,
+      "fiber_coverage": 0.73,
+      "apparel_items": 195,
       "pct_with_image": 1,
       "pct_categorized": 0.99
+    },
+    {
+      "slug": "caron-callahan",
+      "name": "Caron Callahan",
+      "strategy": "shopify",
+      "items": 111,
+      "attempts": [
+        "shopify:111 items"
+      ],
+      "seconds": 0.7,
+      "avg_price": 164,
+      "median_price": 150,
+      "currency": "USD",
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 110,
+      "pct_with_image": 1,
+      "pct_categorized": 0.92
     },
     {
       "slug": "rouje",
@@ -498,25 +526,9 @@
       "currency": "USD",
       "natural_fiber_median": 0,
       "fiber_coverage": 0.07,
+      "apparel_items": 200,
       "pct_with_image": 0.99,
       "pct_categorized": 0.18
-    },
-    {
-      "slug": "stine-goya",
-      "name": "Stine Goya",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.9,
-      "avg_price": 1623,
-      "median_price": 1649,
-      "currency": "USD",
-      "natural_fiber_median": 0.44,
-      "fiber_coverage": 1,
-      "pct_with_image": 1,
-      "pct_categorized": 0.99
     },
     {
       "slug": "alex-mill",
@@ -526,14 +538,33 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.6,
+      "seconds": 1.3,
       "avg_price": 154,
       "median_price": 165,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.71,
+      "fiber_coverage": 0.85,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.76
+    },
+    {
+      "slug": "stine-goya",
+      "name": "Stine Goya",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 2,
+      "avg_price": 1617,
+      "median_price": 1649,
+      "currency": "USD",
+      "natural_fiber_median": 0.44,
+      "fiber_coverage": 1,
+      "apparel_items": 198,
+      "pct_with_image": 1,
+      "pct_categorized": 0.99
     },
     {
       "slug": "nation-ltd",
@@ -547,61 +578,11 @@
       "avg_price": 114,
       "median_price": 118,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.86,
+      "natural_fiber_median": 0.79,
+      "fiber_coverage": 0.45,
+      "apparel_items": 199,
       "pct_with_image": 1,
       "pct_categorized": 0.97
-    },
-    {
-      "slug": "triarchy",
-      "name": "Triarchy",
-      "strategy": "shopify",
-      "items": 29,
-      "attempts": [
-        "shopify:29 items"
-      ],
-      "seconds": 0.9,
-      "avg_price": 205,
-      "median_price": 204,
-      "currency": "USD",
-      "natural_fiber_median": null,
-      "fiber_coverage": 0,
-      "pct_with_image": 1,
-      "pct_categorized": 0.48
-    },
-    {
-      "slug": "mirth",
-      "name": "Mirth",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 0.9,
-      "avg_price": 246,
-      "median_price": 243,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 1,
-      "pct_with_image": 1,
-      "pct_categorized": 0.93
-    },
-    {
-      "slug": "rachel-antonoff",
-      "name": "Rachel Antonoff",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1,
-      "avg_price": 211,
-      "median_price": 197,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.49,
-      "pct_with_image": 1,
-      "pct_categorized": 0.83
     },
     {
       "slug": "cleobella",
@@ -611,31 +592,69 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.6,
-      "avg_price": 221,
-      "median_price": 226,
+      "seconds": 1,
+      "avg_price": 220,
+      "median_price": 224,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.95,
+      "natural_fiber_median": 0.68,
+      "fiber_coverage": 0.47,
+      "apparel_items": 199,
       "pct_with_image": 1,
       "pct_categorized": 0.93
     },
     {
-      "slug": "cuyana",
-      "name": "Cuyana",
+      "slug": "mirth",
+      "name": "Mirth",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.7,
-      "avg_price": 236,
-      "median_price": 198,
+      "seconds": 0.6,
+      "avg_price": 246,
+      "median_price": 238,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.63,
+      "fiber_coverage": 0.87,
+      "apparel_items": 197,
       "pct_with_image": 1,
-      "pct_categorized": 0.72
+      "pct_categorized": 0.93
+    },
+    {
+      "slug": "triarchy",
+      "name": "Triarchy",
+      "strategy": "shopify",
+      "items": 29,
+      "attempts": [
+        "shopify:29 items"
+      ],
+      "seconds": 1.1,
+      "avg_price": 205,
+      "median_price": 184,
+      "currency": "USD",
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 28,
+      "pct_with_image": 1,
+      "pct_categorized": 0.48
+    },
+    {
+      "slug": "rachel-antonoff",
+      "name": "Rachel Antonoff",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 0.9,
+      "avg_price": 208,
+      "median_price": 197,
+      "currency": "USD",
+      "natural_fiber_median": 0.87,
+      "fiber_coverage": 0.36,
+      "apparel_items": 190,
+      "pct_with_image": 1,
+      "pct_categorized": 0.83
     },
     {
       "slug": "farm-rio",
@@ -645,12 +664,13 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 2,
+      "seconds": 1.7,
       "avg_price": 192,
       "median_price": 177,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.25,
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.1,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.87
     },
@@ -663,13 +683,32 @@
         "shopify:200 items"
       ],
       "seconds": 1.3,
-      "avg_price": 244,
-      "median_price": 253,
+      "avg_price": 243,
+      "median_price": 248,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.75,
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.05,
+      "apparel_items": 194,
       "pct_with_image": 1,
       "pct_categorized": 0.8
+    },
+    {
+      "slug": "cuyana",
+      "name": "Cuyana",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 2.2,
+      "avg_price": 241,
+      "median_price": 198,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.03,
+      "apparel_items": 175,
+      "pct_with_image": 1,
+      "pct_categorized": 0.72
     },
     {
       "slug": "ozma",
@@ -680,11 +719,12 @@
         "shopify:200 items"
       ],
       "seconds": 1.3,
-      "avg_price": 234,
+      "avg_price": 238,
       "median_price": 258,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.94,
+      "fiber_coverage": 0.2,
+      "apparel_items": 191,
       "pct_with_image": 1,
       "pct_categorized": 0.86
     },
@@ -696,31 +736,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.5,
-      "avg_price": 274,
-      "median_price": 283,
+      "seconds": 1.3,
+      "avg_price": 268,
+      "median_price": 278,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.98,
+      "fiber_coverage": 0.95,
+      "apparel_items": 158,
       "pct_with_image": 1,
       "pct_categorized": 0.95
-    },
-    {
-      "slug": "xirena",
-      "name": "Xirena",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.7,
-      "avg_price": 262,
-      "median_price": 248,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.8,
-      "pct_with_image": 1,
-      "pct_categorized": 0.96
     },
     {
       "slug": "paloma-wool",
@@ -730,14 +754,69 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.4,
-      "avg_price": 276,
+      "seconds": 1.1,
+      "avg_price": 277,
       "median_price": 195,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.72,
+      "fiber_coverage": 0.01,
+      "apparel_items": 199,
       "pct_with_image": 1,
       "pct_categorized": 0.67
+    },
+    {
+      "slug": "xirena",
+      "name": "Xirena",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.8,
+      "avg_price": 261,
+      "median_price": 248,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.01,
+      "apparel_items": 197,
+      "pct_with_image": 1,
+      "pct_categorized": 0.96
+    },
+    {
+      "slug": "freda-salvador",
+      "name": "Freda Salvador",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.5,
+      "avg_price": 346,
+      "median_price": 368,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.07,
+      "apparel_items": 198,
+      "pct_with_image": 0.77,
+      "pct_categorized": 0.97
+    },
+    {
+      "slug": "musier",
+      "name": "Musier Paris",
+      "strategy": "shopify",
+      "items": 47,
+      "attempts": [
+        "shopify:47 items"
+      ],
+      "seconds": 1.6,
+      "avg_price": 245,
+      "median_price": 248,
+      "currency": "USD",
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.04,
+      "apparel_items": 47,
+      "pct_with_image": 1,
+      "pct_categorized": 0.38
     },
     {
       "slug": "staud",
@@ -752,60 +831,10 @@
       "median_price": 395,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.78,
+      "fiber_coverage": 0.02,
+      "apparel_items": 200,
       "pct_with_image": 1,
       "pct_categorized": 0.94
-    },
-    {
-      "slug": "freda-salvador",
-      "name": "Freda Salvador",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.8,
-      "avg_price": 344,
-      "median_price": 368,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.42,
-      "pct_with_image": 0.77,
-      "pct_categorized": 0.97
-    },
-    {
-      "slug": "loeffler-randall",
-      "name": "Loeffler Randall",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 2.3,
-      "avg_price": 257,
-      "median_price": 250,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.61,
-      "pct_with_image": 1,
-      "pct_categorized": 0.85
-    },
-    {
-      "slug": "musier",
-      "name": "Musier Paris",
-      "strategy": "shopify",
-      "items": 47,
-      "attempts": [
-        "shopify:47 items"
-      ],
-      "seconds": 2.1,
-      "avg_price": 245,
-      "median_price": 248,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.13,
-      "pct_with_image": 1,
-      "pct_categorized": 0.38
     },
     {
       "slug": "doen",
@@ -815,48 +844,33 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.6,
-      "avg_price": 316,
+      "seconds": 1.8,
+      "avg_price": 311,
       "median_price": 298,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.85,
+      "natural_fiber_median": 0,
+      "fiber_coverage": 0.19,
+      "apparel_items": 188,
       "pct_with_image": 1,
       "pct_categorized": 0.81
     },
     {
-      "slug": "jenni-kayne",
-      "name": "Jenni Kayne",
+      "slug": "loeffler-randall",
+      "name": "Loeffler Randall",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1,
-      "avg_price": 909,
-      "median_price": 345,
+      "seconds": 2.7,
+      "avg_price": 257,
+      "median_price": 250,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.59,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 200,
       "pct_with_image": 1,
-      "pct_categorized": 0.45
-    },
-    {
-      "slug": "rachel-comey",
-      "name": "Rachel Comey",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 2.4,
-      "avg_price": 671,
-      "median_price": 595,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.52,
-      "pct_with_image": 1,
-      "pct_categorized": 0.91
+      "pct_categorized": 0.85
     },
     {
       "slug": "extreme-cashmere",
@@ -866,31 +880,33 @@
       "attempts": [
         "shopify:119 items"
       ],
-      "seconds": 1.6,
-      "avg_price": 599,
+      "seconds": 1.4,
+      "avg_price": 608,
       "median_price": 500,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 1,
+      "fiber_coverage": 0.2,
+      "apparel_items": 116,
       "pct_with_image": 1,
       "pct_categorized": 0.79
     },
     {
-      "slug": "nili-lotan",
-      "name": "Nili Lotan",
+      "slug": "jenni-kayne",
+      "name": "Jenni Kayne",
       "strategy": "shopify",
       "items": 200,
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.5,
-      "avg_price": 955,
-      "median_price": 650,
+      "seconds": 1.4,
+      "avg_price": 1097,
+      "median_price": 345,
       "currency": "USD",
       "natural_fiber_median": 1,
-      "fiber_coverage": 0.48,
+      "fiber_coverage": 0.28,
+      "apparel_items": 149,
       "pct_with_image": 1,
-      "pct_categorized": 0.88
+      "pct_categorized": 0.45
     },
     {
       "slug": "simone-rocha",
@@ -901,13 +917,50 @@
         "shopify:200 items"
       ],
       "seconds": 1.7,
-      "avg_price": 616,
+      "avg_price": 615,
       "median_price": 525,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.46,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 198,
       "pct_with_image": 1,
       "pct_categorized": 0.8
+    },
+    {
+      "slug": "rachel-comey",
+      "name": "Rachel Comey",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 2.8,
+      "avg_price": 671,
+      "median_price": 595,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.01,
+      "apparel_items": 200,
+      "pct_with_image": 1,
+      "pct_categorized": 0.91
+    },
+    {
+      "slug": "khaite",
+      "name": "Khaite",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 0.5,
+      "avg_price": 3840,
+      "median_price": 2200,
+      "currency": "USD",
+      "natural_fiber_median": 0.98,
+      "fiber_coverage": 0.01,
+      "apparel_items": 199,
+      "pct_with_image": 1,
+      "pct_categorized": 0.79
     },
     {
       "slug": "ulla-johnson",
@@ -917,13 +970,50 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.6,
-      "avg_price": 867,
+      "seconds": 1.4,
+      "avg_price": 876,
       "median_price": 690,
       "currency": "USD",
       "natural_fiber_median": 1,
       "fiber_coverage": 1,
+      "apparel_items": 195,
       "pct_with_image": 0.99,
+      "pct_categorized": 0.88
+    },
+    {
+      "slug": "cecilie-bahnsen",
+      "name": "Cecilie Bahnsen",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 0.9,
+      "avg_price": 1417,
+      "median_price": 1100,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.03,
+      "apparel_items": 194,
+      "pct_with_image": 1,
+      "pct_categorized": 0.9
+    },
+    {
+      "slug": "nili-lotan",
+      "name": "Nili Lotan",
+      "strategy": "shopify",
+      "items": 200,
+      "attempts": [
+        "shopify:200 items"
+      ],
+      "seconds": 1.6,
+      "avg_price": 955,
+      "median_price": 650,
+      "currency": "USD",
+      "natural_fiber_median": 1,
+      "fiber_coverage": 0.01,
+      "apparel_items": 200,
+      "pct_with_image": 1,
       "pct_categorized": 0.88
     },
     {
@@ -934,31 +1024,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 0.9,
-      "avg_price": 736,
-      "median_price": 630,
+      "seconds": 1.1,
+      "avg_price": 756,
+      "median_price": 650,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.81,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 190,
       "pct_with_image": 1,
       "pct_categorized": 0.7
-    },
-    {
-      "slug": "khaite",
-      "name": "Khaite",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 1.2,
-      "avg_price": 3830,
-      "median_price": 2200,
-      "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.69,
-      "pct_with_image": 1,
-      "pct_categorized": 0.79
     },
     {
       "slug": "the-row",
@@ -968,31 +1042,15 @@
       "attempts": [
         "shopify:200 items"
       ],
-      "seconds": 1.2,
-      "avg_price": 1966,
-      "median_price": 1490,
+      "seconds": 1.4,
+      "avg_price": 2060,
+      "median_price": 1550,
       "currency": "USD",
-      "natural_fiber_median": 1,
-      "fiber_coverage": 0.93,
+      "natural_fiber_median": null,
+      "fiber_coverage": 0,
+      "apparel_items": 187,
       "pct_with_image": 1,
       "pct_categorized": 0.78
-    },
-    {
-      "slug": "cecilie-bahnsen",
-      "name": "Cecilie Bahnsen",
-      "strategy": "shopify",
-      "items": 200,
-      "attempts": [
-        "shopify:200 items"
-      ],
-      "seconds": 2,
-      "avg_price": 1426,
-      "median_price": 1105,
-      "currency": "USD",
-      "natural_fiber_median": 0.5,
-      "fiber_coverage": 0.37,
-      "pct_with_image": 1,
-      "pct_categorized": 0.9
     }
   ]
 }
