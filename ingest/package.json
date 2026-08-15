@@ -1,0 +1,13 @@
+{
+  "name": "rack-ingest",
+  "version": "0.1.0",
+  "description": "Crawls brand catalogs into a JSONL item index.",
+  "scripts": {
+    "crawl": "node src/ingest.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1"
+  },
+  "private": true,
+  "type": "module"
+}

@@ -27,3 +27,26 @@ node src/ingest.mjs --brands madewell,quince        # named brands
 
 - **Tier-2 data is thinner than tier-1.** JSON-LD rarely carries fiber composition, so the fabric gate has weak coverage for exactly the large retailers that need tier 2 (~20-45% vs near-total on Shopify).
 - Sitemap walking is bounded (25 index fetches, 3x the item budget in candidate URLs) so a large retailer's sitemap tree can't consume the whole run.
+
+## Blocked hosts
+
+Some retailers return **403 on `robots.txt` itself** — Anthropologie, Zara, COS,
+& Other Stories, Mango, J.Crew. Verified as origin-level, not a local egress
+policy: the proxy records no relay failure for those hosts, so the CONNECT
+tunnel succeeded and the 403 came from the retailer.
+
+These are not a bug to fix in the crawler. Route them through a licensed
+product feed (Rakuten, Impact, CJ — all three carry most of this set) rather
+than working around the block.
+
+## Client-rendered hosts (unresolved)
+
+GANNI, Uniqlo, Kotn, Amour Vert, and VETTA serve `robots.txt` normally and do
+not disallow us — they render products client-side, so no `Product` JSON-LD
+appears in the initial HTML. These need a headless renderer (tier 3).
+
+Playwright is installed but **could not be verified in this sandbox**: Chromium
+fails with `ERR_CONNECTION_RESET` through the session's egress proxy even for
+`example.com`, across every proxy flag combination tried. The renderer strategy
+is therefore unwritten rather than written-and-untested. It should work in a
+normal network environment.
