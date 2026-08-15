@@ -7,6 +7,9 @@
 - **Sample first, then WAIT FOR MY GREEN LIGHT.** Give me ~10 results in the final format.
   Do **not** launch the full workflow until I explicitly approve the sample. "Here's a sample,
   and I've also started the full run" is not following this rule — the full run waits.
+  **Only an explicit "go" is a green light.** Me answering a clarifying question is not approval —
+  not a budget answer, not a taste answer, not picking an option. If you are unsure whether you
+  have the green light, you do not have it. Ask, then wait.
 - **Check the premise before scaling up.** If I say "cute stores" and you build a vintage guide,
   that's a whole run wasted. Read back what I asked for before spending agents on it.
 - **Calibrate taste on real examples, not adjectives.** "Colourful" and "cute" are not the same
