@@ -50,3 +50,25 @@ fails with `ERR_CONNECTION_RESET` through the session's egress proxy even for
 `example.com`, across every proxy flag combination tried. The renderer strategy
 is therefore unwritten rather than written-and-untested. It should work in a
 normal network environment.
+
+## Interim scoring (`src/score.mjs`) — known not to work yet
+
+Scores items on the two signals the index currently carries: material quality
+and value-per-dollar within category. **The output is not usable as a ranking**,
+and the failure is instructive:
+
+- **It ranks cheap basics.** Materials + value with no fashionability term is a
+  "best-value cotton tee" finder. The top of the list is graphic tees and tanks.
+- **Scores saturate.** Dozens of items tie at 1.00 — any item that is 100%
+  natural and below its category median maxes out, so there is no ordering
+  within the top band.
+- **Keyword categorisation is unreliable.** A cashmere *comb* classified as
+  knitwear, a *scrunchie* as a shirt, a mock-neck *tee* as shorts.
+
+The third point is the important one: it is direct evidence for the plan's
+claim that retailer titles and tags are too noisy to build on, and that the
+vision enrichment pass producing canonical descriptions is a prerequisite for
+search *and* for categorisation — not just a quality upgrade.
+
+Do not use this score for anything user-facing until fashionability (vision)
+and taste-match (user comparisons) are in it.
