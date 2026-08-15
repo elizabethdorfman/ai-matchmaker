@@ -1,0 +1,117 @@
+{
+  "_comment": "Seed crawl list. `phase` drives crawl order; `platform_guess` is a hint for the ingestion worker, which detects the real one. Domains need a verification pass before the first crawl — the worker's tier-detection will surface bad ones.",
+  "_phases": {
+    "1": "Direct-from-brand. Mostly Shopify, clean structured data, coherent house aesthetic, natural-fiber-forward. Start here.",
+    "2": "Chains with a strong house style. Coverage + recognizability. Boutique score will rank them low, which is correct.",
+    "3": "Aggregators and fast fashion. Different ingestion problem (huge catalogs, anti-bot). Defer."
+  },
+  "_selection_criteria": [
+    "Fashionable — a coherent, identifiable house aesthetic rather than trend-chasing.",
+    "Good fabrics — natural fibers and real construction, not 100% polyester at a markup.",
+    "Crawlable — structured product data (Shopify /products.json or schema.org JSON-LD).",
+    "Boutique-leaning — few locations, independent or founder-led where possible."
+  ],
+  "_fabric_gate": {
+    "why": "'Good fabrics' is the criterion that separates a taste index from a catalog, and unlike aesthetic judgment it is machine-checkable — fiber composition sits in the Shopify payload or product copy for most brands.",
+    "how": "During ingestion, parse fiber composition per item and compute a natural-fiber ratio (cotton, linen, wool, cashmere, silk, leather, TENCEL/lyocell, viscose-from-certified-source). Roll up to a brand-level median.",
+    "gate": "Brands whose median natural-fiber ratio falls below ~50% get flagged for review before entering the index, regardless of how fashionable they look.",
+    "note": "This turns a taste criterion into an automated index gate. It is also a strong input to the Boutique Score in Feature 3 — cheap synthetics correlate hard with the chains we want to rank down. Expect it to flag several phase-2 and every phase-3 entry, which is the point."
+  },
+
+  "brands": [
+    { "slug": "ganni",            "name": "GANNI",                  "domain": "www.ganni.com",              "phase": 1, "category": "designer-contemporary", "aesthetic": "playful Scandi", "platform_guess": "shopify" },
+    { "slug": "toteme",           "name": "Totême",                 "domain": "toteme-studio.com",          "phase": 1, "category": "designer-contemporary", "aesthetic": "Scandi minimal" },
+    { "slug": "nanushka",         "name": "Nanushka",               "domain": "www.nanushka.com",           "phase": 1, "category": "designer-contemporary", "aesthetic": "soft modern" },
+    { "slug": "staud",            "name": "STAUD",                  "domain": "staud.clothing",             "phase": 1, "category": "designer-contemporary", "aesthetic": "LA polished", "platform_guess": "shopify" },
+    { "slug": "rejina-pyo",       "name": "Rejina Pyo",             "domain": "rejinapyo.com",              "phase": 1, "category": "designer-contemporary", "aesthetic": "sculptural" },
+    { "slug": "ulla-johnson",     "name": "Ulla Johnson",           "domain": "www.ullajohnson.com",        "phase": 1, "category": "designer-contemporary", "aesthetic": "romantic textured" },
+    { "slug": "rachel-comey",     "name": "Rachel Comey",           "domain": "www.rachelcomey.com",        "phase": 1, "category": "designer-contemporary", "aesthetic": "downtown NY" },
+    { "slug": "nili-lotan",       "name": "Nili Lotan",             "domain": "www.nililotan.com",          "phase": 1, "category": "designer-contemporary", "aesthetic": "quiet luxury" },
+    { "slug": "lemaire",          "name": "Lemaire",                "domain": "www.lemaire.fr",             "phase": 1, "category": "designer-contemporary", "aesthetic": "restrained French" },
+    { "slug": "acne-studios",     "name": "Acne Studios",           "domain": "www.acnestudios.com",        "phase": 1, "category": "designer-contemporary", "aesthetic": "Scandi cool" },
+    { "slug": "isabel-marant",    "name": "Isabel Marant",          "domain": "www.isabelmarant.com",       "phase": 1, "category": "designer-contemporary", "aesthetic": "Parisian bohemian" },
+    { "slug": "jacquemus",        "name": "Jacquemus",              "domain": "www.jacquemus.com",          "phase": 1, "category": "designer-contemporary", "aesthetic": "Mediterranean playful" },
+    { "slug": "khaite",           "name": "Khaite",                 "domain": "khaite.com",                 "phase": 1, "category": "designer-contemporary", "aesthetic": "elevated minimal" },
+    { "slug": "the-row",          "name": "The Row",                "domain": "www.therow.com",             "phase": 1, "category": "designer-contemporary", "aesthetic": "quiet luxury" },
+    { "slug": "simone-rocha",     "name": "Simone Rocha",           "domain": "www.simonerocha.com",        "phase": 1, "category": "designer-contemporary", "aesthetic": "romantic dark" },
+    { "slug": "cecilie-bahnsen",  "name": "Cecilie Bahnsen",        "domain": "ceciliebahnsen.com",         "phase": 1, "category": "designer-contemporary", "aesthetic": "sculptural romantic" },
+    { "slug": "zimmermann",       "name": "Zimmermann",             "domain": "www.zimmermann.com",         "phase": 1, "category": "designer-contemporary", "aesthetic": "resort feminine" },
+
+    { "slug": "sezane",           "name": "Sézane",                 "domain": "www.sezane.com",             "phase": 1, "category": "french", "aesthetic": "Parisian classic" },
+    { "slug": "rouje",            "name": "Rouje",                  "domain": "www.rouje.com",              "phase": 1, "category": "french", "aesthetic": "Parisian sensual" },
+    { "slug": "musier",           "name": "Musier Paris",           "domain": "musier-paris.com",           "phase": 1, "category": "french", "aesthetic": "Parisian modern" },
+    { "slug": "polene",           "name": "Polène",                 "domain": "en.polene-paris.com",        "phase": 1, "category": "accessories", "aesthetic": "sculptural leather" },
+
+    { "slug": "filippa-k",        "name": "Filippa K",              "domain": "www.filippa-k.com",          "phase": 1, "category": "scandi", "aesthetic": "Scandi minimal" },
+    { "slug": "stine-goya",       "name": "Stine Goya",             "domain": "stinegoya.com",              "phase": 1, "category": "scandi", "aesthetic": "colorful print" },
+    { "slug": "samsoe",           "name": "Samsøe Samsøe",          "domain": "www.samsoe.com",             "phase": 1, "category": "scandi", "aesthetic": "Copenhagen casual" },
+    { "slug": "baum",             "name": "Baum und Pferdgarten",   "domain": "www.baumundpferdgarten.com", "phase": 1, "category": "scandi", "aesthetic": "eclectic Danish" },
+    { "slug": "holzweiler",       "name": "Holzweiler",             "domain": "holzweiler.no",              "phase": 1, "category": "scandi", "aesthetic": "Norwegian relaxed" },
+    { "slug": "rotate",           "name": "ROTATE Birger Christensen","domain": "rotatebirgerchristensen.com","phase": 1,"category": "scandi", "aesthetic": "party glam" },
+
+    { "slug": "paloma-wool",      "name": "Paloma Wool",            "domain": "palomawool.com",             "phase": 1, "category": "downtown", "aesthetic": "artful Barcelona", "platform_guess": "shopify" },
+    { "slug": "lisa-says-gah",    "name": "Lisa Says Gah",          "domain": "lisasaysgah.com",            "phase": 1, "category": "downtown", "aesthetic": "SF indie", "platform_guess": "shopify" },
+    { "slug": "frankie-shop",     "name": "The Frankie Shop",       "domain": "thefrankieshop.com",         "phase": 1, "category": "downtown", "aesthetic": "downtown minimal", "platform_guess": "shopify" },
+    { "slug": "house-of-sunny",   "name": "House of Sunny",         "domain": "houseofsunny.co.uk",         "phase": 1, "category": "downtown", "aesthetic": "London statement", "platform_guess": "shopify" },
+    { "slug": "kule",             "name": "KULE",                   "domain": "kule.com",                   "phase": 1, "category": "downtown", "aesthetic": "preppy stripe", "platform_guess": "shopify" },
+    { "slug": "miaou",            "name": "Miaou",                  "domain": "miaou.com",                  "phase": 1, "category": "downtown", "aesthetic": "body-conscious", "platform_guess": "shopify" },
+    { "slug": "collina-strada",   "name": "Collina Strada",         "domain": "collinastrada.com",          "phase": 1, "category": "downtown", "aesthetic": "maximalist eco", "platform_guess": "shopify" },
+    { "slug": "eckhaus-latta",    "name": "Eckhaus Latta",          "domain": "eckhauslatta.com",           "phase": 1, "category": "downtown", "aesthetic": "art-school", "platform_guess": "shopify" },
+    { "slug": "farm-rio",         "name": "FARM Rio",               "domain": "www.farmrio.com",            "phase": 1, "category": "downtown", "aesthetic": "Brazilian print", "platform_guess": "shopify" },
+    { "slug": "realisation-par",  "name": "Réalisation Par",        "domain": "realisationpar.com",         "phase": 1, "category": "downtown", "aesthetic": "slip-dress cool", "platform_guess": "shopify" },
+    { "slug": "with-jean",        "name": "With Jéan",              "domain": "withjean.com",               "phase": 1, "category": "downtown", "aesthetic": "Australian romantic", "platform_guess": "shopify" },
+    { "slug": "danielle-guizio",  "name": "Danielle Guizio",        "domain": "danielleguizio.com",         "phase": 1, "category": "downtown", "aesthetic": "NY streetwear", "platform_guess": "shopify" },
+
+    { "slug": "reformation",      "name": "Reformation",            "domain": "www.thereformation.com",     "phase": 1, "category": "sustainable", "aesthetic": "LA feminine" },
+    { "slug": "doen",             "name": "DÔEN",                   "domain": "shopdoen.com",               "phase": 1, "category": "sustainable", "aesthetic": "California romantic", "platform_guess": "shopify" },
+    { "slug": "christy-dawn",     "name": "Christy Dawn",           "domain": "christydawn.com",            "phase": 1, "category": "sustainable", "aesthetic": "vintage prairie", "platform_guess": "shopify" },
+    { "slug": "whimsy-row",       "name": "Whimsy + Row",           "domain": "whimsyandrow.com",           "phase": 1, "category": "sustainable", "aesthetic": "LA slow", "platform_guess": "shopify" },
+    { "slug": "kotn",             "name": "Kotn",                   "domain": "kotn.com",                   "phase": 1, "category": "sustainable", "aesthetic": "Egyptian cotton basics", "platform_guess": "shopify" },
+
+    { "slug": "everlane",         "name": "Everlane",               "domain": "www.everlane.com",           "phase": 1, "category": "elevated-basics", "aesthetic": "transparent minimal", "platform_guess": "shopify" },
+    { "slug": "cuyana",           "name": "Cuyana",                 "domain": "www.cuyana.com",             "phase": 1, "category": "elevated-basics", "aesthetic": "fewer better" },
+    { "slug": "jenni-kayne",      "name": "Jenni Kayne",            "domain": "www.jennikayne.com",         "phase": 1, "category": "elevated-basics", "aesthetic": "California easy", "platform_guess": "shopify" },
+    { "slug": "quince",           "name": "Quince",                 "domain": "www.onequince.com",          "phase": 1, "category": "elevated-basics", "aesthetic": "affordable luxury" },
+    { "slug": "vetta",            "name": "VETTA",                  "domain": "vettacapsule.com",           "phase": 1, "category": "elevated-basics", "aesthetic": "capsule wardrobe", "platform_guess": "shopify" },
+
+    { "slug": "agolde",           "name": "AGOLDE",                 "domain": "agolde.com",                 "phase": 1, "category": "denim", "aesthetic": "LA vintage denim", "platform_guess": "shopify" },
+    { "slug": "citizens",         "name": "Citizens of Humanity",   "domain": "citizensofhumanity.com",     "phase": 1, "category": "denim", "aesthetic": "premium denim", "platform_guess": "shopify" },
+    { "slug": "mother",           "name": "MOTHER Denim",           "domain": "www.motherdenim.com",        "phase": 1, "category": "denim", "aesthetic": "playful denim", "platform_guess": "shopify" },
+    { "slug": "redone",           "name": "RE/DONE",                "domain": "shopredone.com",             "phase": 1, "category": "denim", "aesthetic": "reworked vintage", "platform_guess": "shopify" },
+    { "slug": "frame",            "name": "FRAME",                  "domain": "frame-store.com",            "phase": 1, "category": "denim", "aesthetic": "LA-via-London" },
+    { "slug": "triarchy",         "name": "Triarchy",               "domain": "triarchy.com",               "phase": 1, "category": "denim", "aesthetic": "sustainable denim", "platform_guess": "shopify" },
+
+    { "slug": "naadam",           "name": "NAADAM",                 "domain": "naadam.co",                  "phase": 1, "category": "knitwear", "aesthetic": "accessible cashmere", "platform_guess": "shopify" },
+    { "slug": "lisa-yang",        "name": "Lisa Yang",              "domain": "lisayang.com",               "phase": 1, "category": "knitwear", "aesthetic": "luxe cashmere" },
+    { "slug": "extreme-cashmere", "name": "Extreme Cashmere",       "domain": "extreme-cashmere.com",       "phase": 1, "category": "knitwear", "aesthetic": "oversized knit" },
+    { "slug": "guest-in-residence","name": "Guest In Residence",    "domain": "guestinresidence.com",       "phase": 1, "category": "knitwear", "aesthetic": "Gigi Hadid cashmere", "platform_guess": "shopify" },
+    { "slug": "and-daughter",     "name": "&Daughter",              "domain": "www.and-daughter.com",       "phase": 1, "category": "knitwear", "aesthetic": "Irish heritage knit" },
+
+    { "slug": "loeffler-randall", "name": "Loeffler Randall",       "domain": "www.loefflerrandall.com",    "phase": 1, "category": "footwear", "aesthetic": "party shoe", "platform_guess": "shopify" },
+    { "slug": "freda-salvador",   "name": "Freda Salvador",         "domain": "fredasalvador.com",          "phase": 1, "category": "footwear", "aesthetic": "SF handcrafted", "platform_guess": "shopify" },
+    { "slug": "dear-frances",     "name": "Dear Frances",           "domain": "dearfrances.com",            "phase": 1, "category": "footwear", "aesthetic": "minimal Italian", "platform_guess": "shopify" },
+    { "slug": "vagabond",         "name": "Vagabond Shoemakers",    "domain": "www.vagabond.com",           "phase": 1, "category": "footwear", "aesthetic": "Scandi chunky" },
+    { "slug": "nisolo",           "name": "Nisolo",                 "domain": "nisolo.com",                 "phase": 1, "category": "footwear", "aesthetic": "ethical classic", "platform_guess": "shopify" },
+    { "slug": "marge-sherwood",   "name": "Marge Sherwood",         "domain": "margesherwood.com",          "phase": 1, "category": "accessories", "aesthetic": "Korean soft leather", "platform_guess": "shopify" },
+    { "slug": "mansur-gavriel",   "name": "Mansur Gavriel",         "domain": "www.mansurgavriel.com",      "phase": 1, "category": "accessories", "aesthetic": "minimal bucket", "platform_guess": "shopify" },
+    { "slug": "wandler",          "name": "Wandler",                "domain": "wandler.com",                "phase": 1, "category": "accessories", "aesthetic": "Amsterdam sculptural" },
+    { "slug": "by-far",           "name": "BY FAR",                 "domain": "byfar.com",                  "phase": 1, "category": "accessories", "aesthetic": "90s revival" },
+
+    { "slug": "anthropologie",    "name": "Anthropologie",          "domain": "www.anthropologie.com",      "phase": 2, "category": "chain", "aesthetic": "eclectic bohemian", "note": "User pick. Strong house aesthetic despite scale." },
+    { "slug": "aritzia",          "name": "Aritzia",                "domain": "www.aritzia.com",            "phase": 2, "category": "chain", "aesthetic": "Canadian polished" },
+    { "slug": "cos",              "name": "COS",                    "domain": "www.cos.com",                "phase": 2, "category": "chain", "aesthetic": "architectural minimal" },
+    { "slug": "arket",            "name": "Arket",                  "domain": "www.arket.com",              "phase": 2, "category": "chain", "aesthetic": "Scandi utility" },
+    { "slug": "other-stories",    "name": "& Other Stories",        "domain": "www.stories.com",            "phase": 2, "category": "chain", "aesthetic": "Parisian-via-Stockholm" },
+    { "slug": "mango",            "name": "Mango",                  "domain": "shop.mango.com",             "phase": 2, "category": "chain", "aesthetic": "Spanish accessible" },
+    { "slug": "madewell",         "name": "Madewell",               "domain": "www.madewell.com",           "phase": 2, "category": "chain", "aesthetic": "American casual" },
+    { "slug": "free-people",      "name": "Free People",            "domain": "www.freepeople.com",         "phase": 2, "category": "chain", "aesthetic": "festival bohemian" },
+
+    { "slug": "ssense",           "name": "SSENSE",                 "domain": "www.ssense.com",             "phase": 3, "category": "aggregator", "note": "Multi-brand. Best-curated of the aggregators; strong dedup target." },
+    { "slug": "net-a-porter",     "name": "NET-A-PORTER",           "domain": "www.net-a-porter.com",       "phase": 3, "category": "aggregator" },
+    { "slug": "nordstrom",        "name": "Nordstrom",              "domain": "www.nordstrom.com",          "phase": 3, "category": "aggregator", "note": "User pick. Huge catalog, heavy anti-bot, duplicates phase-1 brands." },
+    { "slug": "revolve",          "name": "REVOLVE",                "domain": "www.revolve.com",            "phase": 3, "category": "aggregator" },
+    { "slug": "shopbop",          "name": "Shopbop",                "domain": "www.shopbop.com",            "phase": 3, "category": "aggregator" },
+    { "slug": "moda-operandi",    "name": "Moda Operandi",          "domain": "www.modaoperandi.com",       "phase": 3, "category": "aggregator" },
+    { "slug": "zara",             "name": "Zara",                   "domain": "www.zara.com",               "phase": 3, "category": "fast-fashion", "note": "User pick. Coverage value, but the boutique score exists to rank this down — keep that intentional." }
+  ]
+}
