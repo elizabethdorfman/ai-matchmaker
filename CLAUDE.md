@@ -4,10 +4,15 @@
 
 - **Plan research before running it.** For anything bigger than a couple of searches, show me the
   plan first and let me redirect. Don't launch a long multi-agent run and tell me after.
-- **Do a fast sample run first.** Give me ~10 results in the final format so I can confirm the
-  direction, then go deep. A quick wrong answer beats a slow wrong answer.
+- **Sample first, then WAIT FOR MY GREEN LIGHT.** Give me ~10 results in the final format.
+  Do **not** launch the full workflow until I explicitly approve the sample. "Here's a sample,
+  and I've also started the full run" is not following this rule — the full run waits.
 - **Check the premise before scaling up.** If I say "cute stores" and you build a vintage guide,
   that's a whole run wasted. Read back what I asked for before spending agents on it.
+- **Calibrate taste on real examples, not adjectives.** "Colourful" and "cute" are not the same
+  thing, and vibe words like minimal/romantic/edgy don't pin anything down. Ask using
+  recognizable reference brands, and show me actual products with prices so I can react to the
+  thing itself.
 
 ## Researching stores, products, or places
 
