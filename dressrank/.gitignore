@@ -4,3 +4,7 @@ embed.log
 probe.cjs
 bench.mjs
 verify.mjs
+data/img
+shots
+dev.log
+shots.mjs

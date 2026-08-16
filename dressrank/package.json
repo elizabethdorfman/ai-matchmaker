@@ -14,7 +14,8 @@
     "scrape": "node scripts/scrape-shopify.mjs",
     "scrape:anchors": "node scripts/scrape-anchors.mjs",
     "embed": "node scripts/embed.mjs",
-    "data": "npm run scrape && npm run embed"
+    "thumbs": "node scripts/thumbs.mjs",
+    "data": "npm run scrape && npm run embed && npm run thumbs"
   },
   "dependencies": {
     "react": "^18.3.1",
